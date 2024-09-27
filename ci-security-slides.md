@@ -69,7 +69,6 @@ Lab for checking what kinf of licenses are being used
 How to scan code for vulnerabilities e.g. with CodeQL (or GitHub Advanced Security). 
 
 
-
 ## Lab: Static code analysis
 
 Lab for scanning code for vulnerabilities.
