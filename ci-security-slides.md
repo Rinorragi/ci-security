@@ -2,19 +2,20 @@
 
 Rinorragi & Co
 
+
 ## Prerequisites
 
 - GitHub account with public repository
 - Text editor
 - git
 
----
+
 
 ## GitHub Actions
 
----
 
-## Security tools in continuous integration
+
+# Security tools in continuous integration
 
 ## Branch protections
 
