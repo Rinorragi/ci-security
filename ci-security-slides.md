@@ -94,3 +94,14 @@ e.g. checkov
 ## Lab: Scan IaC
 
 Find vulnerabilities in IaC implementation before deployment
+
+
+
+## Check HTTP headers
+
+Use Mozilla Observatory to check the security posture of a website.
+
+
+## Lab: Scan website HTTP headers
+
+Use Mozilla Observatory in GitHub actions to scan HTTP headers in a website.
