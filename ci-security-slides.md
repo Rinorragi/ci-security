@@ -2,7 +2,7 @@
 
 Rinorragi & Co
 
---slide---
+---slide---
 
 ## Prerequisites
 
@@ -14,7 +14,7 @@ Rinorragi & Co
 
 ## GitHub Actions
 
---slide---
+---slide---
 
 ## Lab: GitHub Actions
 
@@ -26,7 +26,7 @@ Lab for creating Hello GitHub Actions
 
 Something about the importance of pull request approvals and protected branches
 
---slide---
+---slide---
 
 ## Lab: Branch protections
 
@@ -43,7 +43,7 @@ How to run one or more of the following in ci
 - npm audit
 - dotnet list package --vulnerable in pipeline.
 
---slide---
+---slide---
 
 ## Lab: Check dependencies
 
@@ -61,7 +61,7 @@ Why to lock packages and how to do it and how to generate bill of materials.
 
 How to check open source licenses used in project.
 
---slide---
+---slide---
 
 ## Lab: License check
 
@@ -73,7 +73,7 @@ Lab for checking what kinf of licenses are being used
 
 How to scan code for vulnerabilities e.g. with CodeQL (or GitHub Advanced Security).
 
---slide---
+---slide---
 
 ## Lab: Static code analysis
 
@@ -85,7 +85,7 @@ Lab for scanning code for vulnerabilities.
 
 E.g. how to use gitleaks to check for hard-coded password, api keys and such
 
---slide---
+---slide---
 
 ## Lab: Secret scanning
 
@@ -97,7 +97,7 @@ Scan secrets from the code
 
 e.g. checkov
 
---slide---
+---slide---
 
 ## Lab: Scan IaC
 
@@ -109,7 +109,7 @@ Find vulnerabilities in IaC implementation before deployment
 
 Use Mozilla Observatory to check the security posture of a website.
 
---slide---
+---slide---
 
 ## Lab: Scan website HTTP headers
 
