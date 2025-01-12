@@ -27,6 +27,7 @@ jobs:
         run: |
           terraform init
           terraform plan -out=plan.tfplan
+        working-directory: ./labs/lab08-iac-scanning
 
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12
