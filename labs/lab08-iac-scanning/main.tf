@@ -1,5 +1,5 @@
 provider "kubernetes" {
-  config_path    = "${path.module}/kubeconfig.dummy" # Avoid having to set up a real cluster
+  config_path    = "${path.module}/kubeconfig.dummy" # Avoid having to set up a real cluster if plans are scanned
   config_context = "dummy-context"
 }
 
