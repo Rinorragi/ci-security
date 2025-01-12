@@ -1,11 +1,25 @@
-variable "db_password" {
-  description = "Database password (should not be hardcoded)"
-  type        = string
-  default     = "SuperSecretPassword123" # Vulnerable: Hardcoded sensitive value
+provider "kubernetes" {
+  config_path    = "${path.module}/kubeconfig.dummy" # Avoid having to set up a real cluster
+  config_context = "dummy-context"
 }
 
-resource "null_resource" "example" {
-  provisioner "local-exec" {
-    command = "echo 'Using password: ${var.db_password}'"
+resource "kubernetes_pod" "vulnerable_pod" {
+  metadata {
+    name      = "vulnerable-pod"
+    namespace = "default" # Vulnerable: Using default namespace
+  }
+
+  spec {
+    container {
+      name  = "nginx"
+      image = "nginx:latest"
+
+      security_context {
+        privileged                 = true # Vulnerable: Privileged container
+        allow_privilege_escalation = true # Vulnerable: Privilege escalation allowed
+      }
+
+      # Vulnerable: Missing liveness and readiness probes
+    }
   }
 }
