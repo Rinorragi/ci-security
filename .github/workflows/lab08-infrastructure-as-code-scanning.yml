@@ -21,6 +21,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so follow-up steps can access it
       - uses: actions/checkout@v4
 
+      - uses: hashicorp/setup-terraform@v3
+
+      - name: Init and Plan terraform (Checkov only checks plan files)
+        run: |
+          terraform init
+          terraform plan -out=plan.tfplan
+
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12
         with:
