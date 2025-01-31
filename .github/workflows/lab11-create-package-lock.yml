@@ -1,11 +1,44 @@
+# Name of the workflow
 name: Lab11 Package Locks
+# How the workflow run is named in GitHub
 run-name: Lab11 - ${{ github.actor }} is locking packages 🔒
 permissions: read-all
+# Set your preferences for the script
+defaults:
+  run:
+    shell: pwsh
 on:
+  # Make it possible to other workflows to call this
+  workflow_call:
+  # Make it possible to manually run this workflow
   workflow_dispatch:
+# The actual jobs
 jobs:
-  example-job:
+  Create-Package-Locks:
+    name: "Create Package Lock"
     runs-on: ubuntu-latest
+    # Steps to actually build the application
     steps:
-      - name: Run hello world
-        run: echo "🎉 Step of the job is running on ${{ runner.os }}!"
+      # Check out the git repository
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Ensure proper version of .NET
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "8.0.x"
+      # Generate lock file
+      - name: Generate lock file
+        run: dotnet restore --force --use-lock-file
+      # Test restore with locked mode
+      - name: Restore with locked mode
+        run: dotnet restore --locked-mode
+      # Dotnet by default restores implicitly if missing something. It is unneccessary and unwanted in CI-situations.
+      - name: Build application
+        run: dotnet build --no-restore
+      - name: Print the package locks
+        run: |
+          get-childitem *.lock.json -Recurse | % {
+            Write-Host $_
+            Get-Content $_
+          }

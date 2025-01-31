@@ -1,12 +1,129 @@
+# Name of the workflow
 name: Lab10 SCA
+# How the workflow run is named in GitHub
 run-name: Lab10 - ${{ github.actor }} is finding vulns🚀
 permissions: read-all
+# Set your preferences for the script
+defaults:
+  run:
+    shell: pwsh
 on:
+  # Make it possible to other workflows to call this
+  workflow_call:
+  # Make it possible to manually run this workflow
   workflow_dispatch:
   # Dependency review is meant to work with prs
   pull_request:
 jobs:
-  example-job:
+  Test-Vulnerabilities-With-Dependency-Check:
+    name: OWASP Dependency Check
+    runs-on: ubuntu-latest
+    # Steps to actually build the application
+    steps:
+      # Check out the git repository
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Ensure proper version of .NET
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "8.0.x"
+      # Ensure this to make sure to actually test against real deal
+      - name: Install .NET dependencies
+        run: dotnet restore
+      # Sometimes (even when considered as a bad practice) part of the dependencies are fetched during build, so better to build first
+      - name: Build application
+        run: dotnet build
+      # Run OWASP Dependency check
+      - name: Dependency Check
+        uses: dependency-check/Dependency-Check_Action@main
+        id: Depcheck
+        with:
+          project: "ci-security"
+          path: "."
+          format: "HTML"
+          out: "reports" # this is the default, no need to specify unless you wish to override it
+          args: >
+            --failOnCVSS 7
+            --enableRetired
+      # Use always() to ensure that even if the above fails on threshold the results are uploaded
+      - name: Upload Test results
+        uses: actions/upload-artifact@master
+        if: ${{ always() }}
+        with:
+          name: OWASP Dependency Check report
+          path: ${{github.workspace}}/reports
+
+  Test-Vulnerabilities-Natively:
+    name: "dotnet native check"
+    runs-on: ubuntu-latest
+    # Steps to actually build the application
+    steps:
+      # Check out the git repository
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Ensure proper version of .NET
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "8.0.x"
+      # Ensure this to make sure to actually test against real deal
+      - name: Install .NET dependencies
+        run: dotnet restore
+      # Sometimes (even when considered as a bad practice) part of the dependencies are fetched during build, so better to build first
+      - name: Build application
+        run: dotnet build
+      - name: Use dotnet tools to test vulns and to fail the job
+        run: | # Use | to tell github actions that this is multiline operation
+          $vulnCount = .\scripts\dotnetaudit.ps1
+          Write-Host "Run dotnetaudit.ps1 with total of $vulnCount vulnerabilities"
+          Write-Host "---OUTPUT---"
+          Get-content vulnerable.out
+          if ($vulnCount -gt 0) {
+            # Set proper error message
+            echo "::error file=scripts/dotnetaudit.ps1,line=19,col=1,endColumn=21,title=Vulnerabilities above zero::Vulnerabilities found for total of $vulnCount"
+            # Error message does not fail the job, use exit 1 to actually make it fail
+            exit 1
+          }
+
+  Test-Vulnerabilities-With-RetireJS:
+    name: "RetireJS check"
+    runs-on: ubuntu-latest
+    # Steps to actually build the application
+    steps:
+      # Check out the git repository
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Ensure proper version of .NET
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "8.0.x"
+      # Ensure this to make sure to actually test against real deal
+      - name: Install .NET dependencies
+        run: dotnet restore
+      # Sometimes (even when considered as a bad practice) part of the dependencies are fetched during build, so better to build first
+      - name: Build application
+        run: dotnet build
+      # Setup Node
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "23.x"
+      - name: Setup RetireJS and create folder for reports
+        run: |
+          npm install -g retire
+          mkdir reports
+      - name: Run RetireJS
+        run: retire --path . --outputformat text --outputpath ./reports/output.txt --severity low --exitwith 1 --deep
+      - name: Upload Test results
+        uses: actions/upload-artifact@master
+        if: ${{ always() }}
+        with:
+          name: RetireJS report
+          path: ${{github.workspace}}/reports
+
+  Test-with-dependency-review:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout Repository"
@@ -15,5 +132,5 @@ jobs:
         uses: actions/dependency-review-action@v4
         with:
           fail-on-severity: low
-          allow-licenses: MIT
-          deny-licenses: AGPL
+          #allow-licenses: MIT
+          #deny-licenses: AGPL
