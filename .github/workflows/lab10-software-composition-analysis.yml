@@ -3,9 +3,17 @@ run-name: Lab10 - ${{ github.actor }} is finding vulns🚀
 permissions: read-all
 on:
   workflow_dispatch:
+  # Dependency review is meant to work with prs
+  pull_request:
 jobs:
   example-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Run hello world
-        run: echo "🎉 Step of the job is running on ${{ runner.os }}!"
+      - name: "Checkout Repository"
+        uses: actions/checkout@v4
+      - name: "Dependency Review"
+        uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: low
+          allow-licenses: MIT
+          deny-licenses: AGPL
