@@ -41,7 +41,7 @@ This exercise will be hard since running docker happens in one step and you can'
 
 ## Solution
 
-- Code: <https://github.com/Rinorragi/ci-security/blob/main/.github/workflows/lab12-dast.yml>
+- Code: <https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab12-dast.yml>
 - Runs: <https://github.com/Rinorragi/ci-security/actions/workflows/lab12-dast.yml>
 
 <details>

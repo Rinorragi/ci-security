@@ -43,5 +43,5 @@ Create package locks for the `ci-security.sln`. Normally you would do this in yo
 
 ## Example solution
 
-- Code: <https://github.com/Rinorragi/ci-security/blob/main/.github/workflows/lab11-create-package-lock.yml>
+- Code: <https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab11-create-package-lock.yml>
 - Runs: <https://github.com/Rinorragi/ci-security/actions/workflows/lab11-create-package-lock.yml>

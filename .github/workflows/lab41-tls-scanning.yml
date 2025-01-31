@@ -1,42 +1,11 @@
-# Name of the workflow
 name: Lab41 TLS scanning
-# How the workflow run is named in GitHub
 run-name: Lab41 - ${{ github.actor }} is scanning TLS ciphers 🚀
 permissions: read-all
-# Set your preferences for the script
-defaults:
-  run:
-    shell: pwsh
 on:
-  # Make it possible to other workflows to call this
-  workflow_call:
-  # Make it possible to manually run this workflow
   workflow_dispatch:
 jobs:
-  tls-scanning:
+  example-job:
     runs-on: ubuntu-latest
-    # Steps to actually build the application
     steps:
-      # Check out the git repository
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Nmap
-        run: sudo apt install nmap
-      - name: Scan TLS for given domain
-        run: |
-          $scanResults = ./scripts/tlsaudit.ps1 huuhka.net
-          $grade = $scanResults[0]
-          $ciphers = $scanResults[1]
-
-          Write-Host "---- CIPHERS ----"
-          For ($i = 1; $i -le $scanResults.Length; $i++) {
-            Write-Host $scanResults[$i]
-          }
-          Write-Host "----- GRADE -----"
-          Write-Host $grade
-          if ($grade -ne "A") {
-            # Set proper error message
-            echo "::error file=scripts/tlsaudit.ps1,title=Weak ciphers detected::Weak ciphers detected with grade: $grade"
-            # Error message does not fail the job, use exit 1 to actually make it fail
-            exit 1
-          }
+      - name: Run hello world
+        run: echo "🎉 Step of the job is running on ${{ runner.os }}!"

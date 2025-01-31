@@ -32,5 +32,5 @@ Try to add something to find.
 
 ## Example solution
 
-- Code: <https://github.com/Rinorragi/ci-security/blob/main/.github/workflows/lab07-secret-scanning.yml>
+- Code: <https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab07-secret-scanning.yml>
 - Runs: <https://github.com/Rinorragi/ci-security/actions/workflows/lab07-secret-scanning.yml>

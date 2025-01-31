@@ -29,7 +29,7 @@ Check the licenses used in project and fail if there is something else than MIT 
 
 ## Example solution
 
-- Code: <https://github.com/Rinorragi/ci-security/blob/main/.github/workflows/lab12-create-package-lock.yml>
+- Code: <https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab12-create-package-lock.yml>
 - Runs: <https://github.com/Rinorragi/ci-security/actions/workflows/lab12-create-package-lock.yml>
 
 <details>

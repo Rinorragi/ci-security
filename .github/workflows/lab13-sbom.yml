@@ -1,56 +1,11 @@
-# Name of the workflow
 name: Lab13 SBOM
-# How the workflow run is named in GitHub
 run-name: Lab13 - ${{ github.actor }} is running SBOM scans 🚀
 permissions: read-all
-# Set your preferences for the script
-defaults:
-  run:
-    shell: pwsh
 on:
-  # Make it possible to other workflows to call this
-  workflow_call:
-  # Make it possible to manually run this workflow
   workflow_dispatch:
 jobs:
-  cyclonedx:
-    runs-on: ubuntu-latest
-    # Steps to actually build the application
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: 8.0.x
-      - name: Install CycloneDX
-        run: dotnet tool install --global CycloneDX
-      - name: Generate sbom with CycloneDX
-        run: dotnet CycloneDX ci-security.sln --json --exclude-dev -o ./cyclone-reports
-      - name: Upload sbom results
-        uses: actions/upload-artifact@master
-        if: ${{ always() }}
-        with:
-          name: CycloneDX SBOM
-          path: ${{github.workspace}}/cyclone-reports
-  spdx:
+  example-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: 8.0.x
-      - name: Install Microsoft SBOM tool
-        run: dotnet tool install --global Microsoft.Sbom.DotNetTool
-      - name: Create SBOM reports directory
-        run: mkdir sbom-reports
-      - name: Generate SBOM
-        run: sbom-tool generate -PackageSupplier "Ci-Security Example ltd" -BuildComponentPath ./apps -PackageName ExamplePackage -PackageVersion 1 -BuildDropPath ./sbom-reports
-      - name: Upload sbom results
-        uses: actions/upload-artifact@master
-        if: ${{ always() }}
-        with:
-          name: SPDX SBOM
-          path: ${{github.workspace}}/sbom-reports
+      - name: Run hello world
+        run: echo "🎉 Step of the job is running on ${{ runner.os }}!"

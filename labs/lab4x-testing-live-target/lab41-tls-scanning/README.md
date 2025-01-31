@@ -31,7 +31,7 @@ Scan TLS version of the domain.
 
 ## Example solution
 
-- Code: <https://github.com/Rinorragi/ci-security/blob/main/.github/workflows/lab10-tls-scanning.yml>
+- Code: <https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab10-tls-scanning.yml>
 - Runs: <https://github.com/Rinorragi/ci-security/actions/workflows/lab10-tls-scanning.yml>
 
 There are online options like Qualys API or offline options like openssl and nmap to fetch TLS ciphers from online target. Depending on from which machine you initiate connection your results may

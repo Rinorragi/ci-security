@@ -28,5 +28,5 @@ Generate SBOM from the vulnerable-app familiar from earlier exercises in CI pipe
 
 ## Solution
 
-- Code: <https://github.com/Rinorragi/ci-security/blob/main/.github/workflows/lab13-sbom.yml>
+- Code: <https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab13-sbom.yml>
 - Runs: <https://github.com/Rinorragi/ci-security/actions/workflows/lab13-sbom.yml>

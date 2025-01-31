@@ -40,7 +40,7 @@ Try to find vulnerabilities in the example apps. There are multiple ways to do i
 
 It is better to try by yourself first, but when you are done with that here is a solution for the task
 
-- Code: <https://github.com/Rinorragi/ci-security/blob/main/.github/workflows/lab10-software-composition-analysis.yml>
+- Code: <https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab10-software-composition-analysis.yml>
 - Runs: <https://github.com/Rinorragi/ci-security/actions/workflows/lab10-software-composition-analysis.yml>
 
 <details>
