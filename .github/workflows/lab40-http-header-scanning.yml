@@ -1,11 +1,23 @@
+# Name of the workflow
 name: Lab40 HTTP header scanning
+# How the workflow run is named in GitHub
 run-name: Lab40 - ${{ github.actor }} is scanning HTTP headers 🚀
 permissions: read-all
+# Set your preferences for the script
+defaults:
+  run:
+    shell: pwsh
 on:
+  # Make it possible to other workflows to call this
+  workflow_call:
+  # Make it possible to manually run this workflow
   workflow_dispatch:
 jobs:
-  example-job:
+  http-header-scanning:
     runs-on: ubuntu-latest
+    # Steps to actually build the application
     steps:
-      - name: Run hello world
-        run: echo "🎉 Step of the job is running on ${{ runner.os }}!"
+      - name: Install Mozilla Observatory
+        run: npm install --global @mdn/mdn-http-observatory
+      - name: Run Mozilla Observatory
+        run: mdn-http-observatory-scan huuhka.net
