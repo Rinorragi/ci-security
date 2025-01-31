@@ -1,11 +1,39 @@
+# Name of the workflow
 name: Lab50 SARIF
+# How the workflow run is named in GitHub
 run-name: Lab50 - ${{ github.actor }} is creating SARIF reports 🚀
 permissions: read-all
+# Set your preferences for the script
+defaults:
+  run:
+    shell: pwsh
 on:
+  # Make it possible to other workflows to call this
+  workflow_call:
+  # Make it possible to manually run this workflow
   workflow_dispatch:
 jobs:
-  example-job:
+  http-header-scanning:
+    permissions:
+      contents: read # for actions/checkout to fetch code
+      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
+      actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
     runs-on: ubuntu-latest
+    # Steps to actually build the application
     steps:
-      - name: Run hello world
-        run: echo "🎉 Step of the job is running on ${{ runner.os }}!"
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+      - name: Install Mozilla Observatory
+        run: npm install --global @mdn/mdn-http-observatory
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run Mozilla Observatory and create SARIF results
+        run: ./scripts/mozilla-observatory-sarif-generator.ps1 "huuhka.net" "mdn.sarif.json"
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v3
+        if: success() || failure()
+        with:
+          sarif_file: "mdn.sarif.json"
+          category: mdn-sarif
