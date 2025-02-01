@@ -32,12 +32,6 @@ public class HomeController : Controller
   }
 
   // Seems like semgrep / GHAS won't find this
-  public IActionResult OpenRedirectVulnerability([FromQuery] string url)
-  {
-    return Redirect(url);
-  }
-
-  // Seems like semgrep / GHAS won't find this
   public ContentResult XSSVulnerability([FromQuery] string content)
   {
     return new ContentResult
@@ -46,6 +40,11 @@ public class HomeController : Controller
       ContentType = "text/html",
       Content = $"<html><body>{content}</body></html>"
     };
+  }
+
+  public IActionResult OpenRedirectVulnerability([FromQuery] string url)
+  {
+    return Redirect(url);
   }
 
   public IActionResult UnsafeDeserialization([FromQuery] byte[] bytes)
