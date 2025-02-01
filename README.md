@@ -73,7 +73,7 @@ Apps are pretty boring.
 - [Lab22 - Secret scanning (contains TODO)](/labs/lab2x-development/lab22-secret-scanning/README.md)
 - [Lab30 - IaC scanning](/labs/lab3x-infrastructure/lab30-iac-scanning/README.md)
 - [Lab40 - HTTP header scanning](/labs/lab4x-testing-live-target/lab40-http-header-scanning/README.md)
-- [Lab41 - TLS cipher scanning (contains TODO)](/labs/lab4x-testing-live-target/lab41-tls-scanning/README.md)
+- [Lab41 - TLS cipher scanning](/labs/lab4x-testing-live-target/lab41-tls-scanning/README.md)
 - [Lab42 - Dynamic Application Security Testing](/labs/lab4x-testing-live-target/lab42-dast/README.md)
 - [Lab50 - SARIF file generation](/labs/lab5x-next-steps/lab50-sarif/README.md)
 - [Lab51 - githooks (contains TODO)](/labs/lab5x-next-steps/lab51-githooks/README.md)

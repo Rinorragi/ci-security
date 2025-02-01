@@ -30,6 +30,8 @@ Fuzz testing is close to DAST. Difference is that Fuzz testing tries to find con
 
 This exercise will be hard since running docker happens in one step and you can't use readymade GitHub Actions to target that but you need to make it all happen in one step. (or that was my experience)
 
+You can check the [vulnerable-pipeline](/.github/workflows/vulnerable-pipeline.yml) to see how to run the application in a docker.
+
 ## Links
 
 - [Nuclei Docker](https://projectdiscovery.io/blog/how-to-run-nuclei-other-projectdiscovery-tools-in-docker)

@@ -15,16 +15,13 @@ Transport Layer Security (TLS) ensures data confidentiality and integrity over t
 
 In this lab, you’ll scan a domain’s TLS configuration to identify which ciphers and TLS versions are in use.
 
-## TODO
-
-Find reason why nmap gives different results here than in my local machine. Linux client tls version?
-
 ## Scan TLS version
 
-Scan TLS version of the domain.
+Scan TLS versions of the dockerized application. Check the [vulnerable-pipeline](/.github/workflows/vulnerable-pipeline.yml) to see how to run the application in a docker.
 
 ## Links
 
+- testssl: <https://testssl.sh/>
 - nmap enum ciphers: <https://nmap.org/nsedoc/scripts/ssl-enum-ciphers.html>
 - Qualys API: <https://docs.qualys.com/en/vm/api/index.htm>
 - openssl-ciphers: <https://docs.openssl.org/3.3/man1/openssl-ciphers/#cipher-list-format>
@@ -34,4 +31,4 @@ Scan TLS version of the domain.
 - Code: <https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab10-tls-scanning.yml>
 - Runs: <https://github.com/Rinorragi/ci-security/actions/workflows/lab10-tls-scanning.yml>
 
-There are online options like Qualys API or offline options like openssl and nmap to fetch TLS ciphers from online target. Depending on from which machine you initiate connection your results may
+There are online options like Qualys API or offline options like openssl and nmap to fetch TLS ciphers from online target. Network devices and the client machine might could cause some variances on the results so plan carefully how you do this in real environment.
