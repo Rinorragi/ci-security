@@ -1,4 +1,15 @@
-# Security safeguards in Continuous Integration
+## Security safeguards in Continuous Integration
+
+Agenda:
+
+- 0:00: Theory and lab introduction
+- 0:10: Labs about GitHub Actions and dependencies
+- 1:00: Check the lab solutions
+- 1:05: Labs about development and infrastructure
+- 2:00: Check the lab solutions
+- 2:05: Labs about testing live target and next steps
+- 2:45: Check the lab solutions
+- 3:00: the end
 
 Rinorragi & Co
 
@@ -10,107 +21,74 @@ Rinorragi & Co
 - Text editor
 - git
 
+---slide---
+
+## How the labs work
+
+- Fork the repository: <https://github.com/Rinorragi/ci-security>
+- Read the `/labs/*`
+- Make your own solution under `/.github/workflows`
+- Check example solutions from <https://github.com/Rinorragi/ci-security/tree/release/examples>
+
+---slide---
+
+## Lab targets
+
+- 99% of time you are targeting .NET application
+- It is `dotnet new mvc` template with some small changes
+- Disclaimer: Attack only targets that you have permission for.
+
 ---page---
 
 ## GitHub Actions
 
----slide---
-
-## Lab: GitHub Actions
-
-Lab for creating Hello GitHub Actions
-
----page---
-
-## Branch protections
-
-Something about the importance of pull request approvals and protected branches
-
----slide---
-
-## Lab: Branch protections
-
-Lab for setting up branch protections
+- GitHub Actions are based on YAML.
+- 2000 minutes free time per month
+- Run on "somebody elses VMs"
+- Running on Windows / Mac images consumes more time
+- Lab00: Teaches the syntax GitHub Actions syntax
 
 ---page---
 
-## Check dependencies
+## Dependencies
 
-Why to check dependencies
-How to run one or more of the following in ci
-
-- OWASP Dependency Check
-- npm audit
-- dotnet list package --vulnerable in pipeline.
-
----slide---
-
-## Lab: Check dependencies
-
-Lab for running vulnerability check for dependencies
+- These labs focus on different threats about software dependencies
+- Lab10: Detect known vulnerabilities (SCA)
+- Lab11: Learn to control how transient dependencies are resolved
+- Lab12: Detect problematic licenses in dependencies
+- Lab13: Generate Software Bill of Materials
 
 ---page---
 
-## Package locks
+## Development
 
-Why to lock packages and how to do it and how to generate bill of materials.
-
----page---
-
-## License checks
-
-How to check open source licenses used in project.
-
----slide---
-
-## Lab: License check
-
-Lab for checking what kinf of licenses are being used
+- These labs focus on different threats during software development
+- Lab20: Learn to protect important branches
+- Lab21: Learn to find vulnerabilities in your code (SAST)
+- Lab22: Learn to find secrets from git repositories
 
 ---page---
 
-## Static code analysis
+## Infrastructure
 
-How to scan code for vulnerabilities e.g. with CodeQL (or GitHub Advanced Security).
-
----slide---
-
-## Lab: Static code analysis
-
-Lab for scanning code for vulnerabilities.
+- Find vulnerabilities in your Infrastructure-as-Code
+- Lab30: Scan GitHub Actions pipeline and terraform iac for vulnerabilities
 
 ---page---
 
-## Secret scanning
+## Testing live target
 
-E.g. how to use gitleaks to check for hard-coded password, api keys and such
-
----slide---
-
-## Lab: Secret scanning
-
-Scan secrets from the code
+- These labs focus on running test against live target
+- Lab40: Check security headers of an web application
+- Lab41: Check TLS cipher suites of a web application
+- Lab42: Run application in docker container and run tests against it (DAST)
 
 ---page---
 
-## Infrastructure as Code scanning
+## Next steps
 
-e.g. checkov
-
----slide---
-
-## Lab: Scan IaC
-
-Find vulnerabilities in IaC implementation before deployment
-
----page---
-
-## Check HTTP headers
-
-Use Mozilla Observatory to check the security posture of a website.
-
----slide---
-
-## Lab: Scan website HTTP headers
-
-Use Mozilla Observatory in GitHub actions to scan HTTP headers in a website.
+- These labs are miscellanous advanced topics:
+- Lab50: Learn how to generate your own static analysis results interchange format files
+- Lab51: Learn how to use githooks to prevent bad pushes
+- Lab52: Study defect dojo for application vulnerability management
+- Lab53: Lean how to run GitHub Actions in your own machine
