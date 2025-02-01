@@ -44,10 +44,10 @@ jobs:
           Write-Host "-- Fetch IP"
           $targetIp = docker inspect --format '{{ .NetworkSettings.IPAddress }}' $containerId
           Write-Host "TargetIP was $targetIp"
-          $target = "https://"+$targetIp+":$httpsPort"
+          $target = "$targetIp+":$httpsPort"
 
           Write-Host "Fetch something from target"
-          curl --insecure $target
+          curl --insecure ("https://"+$target)
 
           $scanResults = ./scripts/tlsaudit.ps1 $target
           $grade = $scanResults[0]
