@@ -99,5 +99,11 @@ jobs:
           Write-Host "-- Fetch something from target"
           curl --insecure $target
 
+          Write-Host "-- Create results folder"
+          mkdir ${{github.workspace}}/testsslreports
+
+          Write-Host "-- Chmod results folder rights"
+          chmod -R a+rw ${{github.workspace}}/testsslreports
+
           Write-Host "-- Start TLS scan"
-          docker run --rm drwetter/testssl.sh $target
+          docker run --rm drwetter/testssl.sh -v ${{github.workspace}}/testsslreports:/reports:rw $target --jsonfile testsslreports --json
