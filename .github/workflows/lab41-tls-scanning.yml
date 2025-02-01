@@ -109,7 +109,7 @@ jobs:
           docker run -v ${{github.workspace}}/testsslreports:/testsslreports:rw --rm drwetter/testssl.sh --jsonfile /testsslreports $target
 
           Write-Host "-- Check the actual vulns from the report (you could do it with parameters too)"
-          $resultsFile = Getl-ChildItem -Path ${{github.workspace}}/testsslreports -Force -Recurse -File | Select-Object -First 1
+          $resultsFile = Get-ChildItem -Path ${{github.workspace}}/testsslreports -Force -Recurse -File | Select-Object -First 1
           Get-Content $resultsFile | ConvertFrom-Json | Where-Object { $_.severity -ne "INFO" -and $_.severity -ne "OK" }
 
       - name: Upload Test results
