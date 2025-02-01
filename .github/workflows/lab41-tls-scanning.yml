@@ -106,7 +106,7 @@ jobs:
           chmod -R a+rw ${{github.workspace}}/testsslreports
 
           Write-Host "-- Start TLS scan"
-          docker run -v ${{github.workspace}}/testsslreports:/testsslreports:rw --rm drwetter/testssl.sh $target --jsonfile /testsslreports --json
+          docker run -v ${{github.workspace}}/testsslreports:/testsslreports:rw --rm drwetter/testssl.sh --jsonfile /testsslreports --json $target
       - name: Upload Test results
         uses: actions/upload-artifact@master
         if: ${{ always() }}
