@@ -13,7 +13,7 @@ on:
   # Make it possible to manually run this workflow
   workflow_dispatch:
 jobs:
-  tls-scanning:
+  nmap-scan:
     runs-on: ubuntu-latest
     # Steps to actually build the application
     steps:
@@ -43,12 +43,13 @@ jobs:
 
           Write-Host "-- Fetch IP"
           $targetIp = docker inspect --format '{{ .NetworkSettings.IPAddress }}' $containerId
-          Write-Host "TargetIP was $targetIp"
+          Write-Host "-- TargetIP was $targetIp"
           $target = "https://"+$targetIp+":$httpsPort"
 
-          Write-Host "Fetch something from target"
+          Write-Host "-- Fetch something from target"
           curl --insecure $target
 
+          Write-Host "-- Start TLS scan"
           $scanResults = ./scripts/tlsaudit.ps1 $targetIp $httpsPort
           $grade = $scanResults[0]
           $ciphers = $scanResults[1]
@@ -65,3 +66,38 @@ jobs:
             # Error message does not fail the job, use exit 1 to actually make it fail
             exit 1
           }
+  testssl-scan:
+    runs-on: ubuntu-latest
+    # Steps to actually build the application
+    steps:
+      # Check out the git repository
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Scan TLS for given domain
+        run: |
+          $password = "ANOTHER_LEAKED_PASSWORD_IS_DOUBLE_BAD"
+          $httpsPort = "8001"
+          Write-Host "-- Build docker"
+          docker build -t vulnerable-app-image -f ./apps/vulnerable-app/Dockerfile .
+
+          Write-host "-- Create HTTPS certificate"
+          mkdir cert
+          dotnet dev-certs https -ep ./cert/secret_certificate.pfx -p $password
+          dotnet dev-certs https --trust
+
+          Write-Host "-- Run docker"
+          $containerId = docker run --tty --detach -p ($httpsPort+":"+$httpsPort) -e ASPNETCORE_HTTPS_PORTS=$httpsPort -e ASPNETCORE_ENVIRONMENT=Development -v ${HOME}/.microsoft/usersecrets/:/home/app/.microsoft/usersecrets -v ./cert/:/https/ -e ASPNETCORE_Kestrel__Certificates__Default__Path=/https/secret_certificate.pfx -e ASPNETCORE_Kestrel__Certificates__Default__Password=$password vulnerable-app-image
+
+          Write-Host "-- Wait for the docker for a moment"
+          Start-Sleep -Seconds 10
+
+          Write-Host "-- Fetch IP"
+          $targetIp = docker inspect --format '{{ .NetworkSettings.IPAddress }}' $containerId
+          Write-Host "-- TargetIP was $targetIp"
+          $target = "https://"+$targetIp+":$httpsPort"
+
+          Write-Host "-- Fetch something from target"
+          curl --insecure $target
+
+          Write-Host "-- Start TLS scan"
+          docker run --rm -ti drwetter/testssl.sh $target
