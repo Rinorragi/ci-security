@@ -100,4 +100,4 @@ jobs:
           curl --insecure $target
 
           Write-Host "-- Start TLS scan"
-          docker run --rm -ti drwetter/testssl.sh $target
+          docker run --rm drwetter/testssl.sh $target
