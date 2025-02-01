@@ -107,3 +107,9 @@ jobs:
 
           Write-Host "-- Start TLS scan"
           docker run --rm drwetter/testssl.sh -v ${{github.workspace}}/testsslreports:/reports:rw $target --jsonfile testsslreports --json
+      - name: Upload Test results
+        uses: actions/upload-artifact@master
+        if: ${{ always() }}
+        with:
+          name: testssl report
+          path: ${{github.workspace}}/testsslreports
