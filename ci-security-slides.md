@@ -52,25 +52,18 @@ Rinorragi & Co
 
 ## Detect threats
 
-::: {data-id="box1" style="background: #ff0000; width: 350px; height: 350px; border-radius: 200px;"}
-Tool failed (your fault)
-:::
-
-::: {data-id="box1" style="background: #00ff00; width: 350px; height: 350px; border-radius: 200px;"}
-Detect succesful (your victory)
-:::
+🔴 Tool failed (bad)
+🟢 Detect succesful (good)
+🟢 Tool not run (bad)
 
 ---slide---
 
 ## Prevent threats
 
-::: {data-id="box1" style="background: #ff0000; width: 350px; height: 350px; border-radius: 200px;"}
-Prevention successful (your victory) or tool failed (your victory)
-:::
-
-::: {data-id="box1" style="background: #00ff00; width: 350px; height: 350px; border-radius: 200px;"}
-No threats detected or tool did not run
-:::
+🔴 Prevention successful (good)
+🔴 Tool failed (bad)
+🟢 Tool not run (bad)
+🟢 No threats (good)
 
 ---page---
 
