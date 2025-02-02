@@ -70,11 +70,8 @@ Rinorragi & Co
   <textarea data-template>
     ```[1|2|3|4]
     🔴 Prevention successful (good)
-
     🔴 Tool failed (bad)
-
     🟢 Tool not run (bad)
-
     🟢 No threats (good)
     ```
 
