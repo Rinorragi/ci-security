@@ -15,13 +15,11 @@ Secret scanning detects credentials and other sensitive information that may be 
 
 In this lab, you’ll configure secret scanning tools to identify and protect against accidental exposure of secrets in the codebase.
 
-## TODO
-
-Try to add something to find.
-
 ## Find secrets from the solution with secret scanning tools
 
 `GitHub Advanced Security` already scans secrets from public repositories. But it has its limitations.
+
+**Note:** If you use `Trufflehog`, it's verification feature will not pick up the secrets found in the repository as they are not really valid. Make sure to also search for `unverified` results.
 
 ## Links
 
