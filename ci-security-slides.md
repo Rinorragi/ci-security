@@ -53,13 +53,11 @@ Rinorragi & Co
 ## Detect threats
 
 <section data-markdown>
-  <textarea data-template>
-    ```[1|2|3]
+  <code data-line-numbers="[1|2|3|4]">
     🔴 Tool failed (bad)
     🟢 Detect succesful (good)
     🟢 Tool not run (bad)
-    ```
-  </textarea>
+  </code>
 </section>
 
 ---slide---
@@ -67,15 +65,12 @@ Rinorragi & Co
 ## Prevent threats
 
 <section data-markdown>
-  <textarea data-template>
-    ```[1|2|3|4]
+  <code data-line-numbers="[1|2|3|4]">
     🔴 Prevention successful (good)
     🔴 Tool failed (bad)
     🟢 Tool not run (bad)
     🟢 No threats (good)
-    ```
-
-  </textarea>
+  </code>
 </section>
 
 ---page---
