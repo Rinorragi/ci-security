@@ -52,7 +52,7 @@ Rinorragi & Co
 
 ## Detect threats
 
-```[1|2|3]
+```js [1|2|3]
 🔴 Tool failed (bad)
 🟢 Detect succesful (good)
 🟢 Tool not run (bad)
@@ -62,7 +62,7 @@ Rinorragi & Co
 
 ## Prevent threats
 
-```[1|2|3|4]
+```md [1|2|3|4]
 🔴 Prevention successful (good)
 🔴 Tool failed (bad)
 🟢 Tool not run (bad)
