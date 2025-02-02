@@ -52,18 +52,34 @@ Rinorragi & Co
 
 ## Detect threats
 
-🔴 Tool failed (bad)
-🟢 Detect succesful (good)
-🟢 Tool not run (bad)
+<section data-markdown>
+  <textarea data-template>
+    ```[1|2|3]
+    🔴 Tool failed (bad)
+    🟢 Detect succesful (good)
+    🟢 Tool not run (bad)
+    ```
+  </textarea>
+</section>
 
 ---slide---
 
 ## Prevent threats
 
-🔴 Prevention successful (good)
-🔴 Tool failed (bad)
-🟢 Tool not run (bad)
-🟢 No threats (good)
+<section data-markdown>
+  <textarea data-template>
+    ```[1|2|3|4]
+    🔴 Prevention successful (good)
+
+    🔴 Tool failed (bad)
+
+    🟢 Tool not run (bad)
+
+    🟢 No threats (good)
+    ```
+
+  </textarea>
+</section>
 
 ---page---
 
