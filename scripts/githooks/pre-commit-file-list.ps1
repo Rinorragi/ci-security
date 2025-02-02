@@ -8,7 +8,7 @@ Write-Host "These are the files that you have modified or are about to add:" -Fo
 Write-Host "---------------------------------------------------------------"
 $fileList | ForEach-Object { Write-Host $_ -ForegroundColor Green }
 Write-Host "---------------------------------------------------------------"
-Write-Host "You could do some analysis here before commit happens"
+Write-Host "You could do some analysis here before commit happens" -ForegroundColor Yellow
 
 exit 0 # Commit succeed
 # exit 1 # Commit would fail
