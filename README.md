@@ -24,6 +24,10 @@ Before diving in, make sure you have the following:
 3. **A text editor or IDE of your choice**
    - Any editor is fine; choose what you’re most comfortable using.
 
+4. **OPTIONAL: Github Actions extension for your IDE**
+   - This will provides some reasonable syntax highlighting and autocompletion for GitHub Actions workflows.
+   - Some options: [VSCode](https://marketplace.visualstudio.com/items?itemName=github.vscode-github-actions), [JetBrains](https://plugins.jetbrains.com/plugin/21396-github-workflow).
+
 ## Getting Started
 
 1. **Fork the Repository**

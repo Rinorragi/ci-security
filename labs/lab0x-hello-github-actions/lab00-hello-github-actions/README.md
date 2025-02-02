@@ -13,10 +13,6 @@
 
 GitHub Actions is a powerful CI/CD platform that lets you automate tasks directly from your GitHub repository.
 
-## TODO
-
-More examples and tasks
-
 ## Build Pipeline Overview
 
 A build pipeline is a sequence of automated steps that compile, package, and test your code. By running these steps consistently and automatically (for example, on every pull request), you gain confidence that the code is functional and meets quality standards before merging changes.

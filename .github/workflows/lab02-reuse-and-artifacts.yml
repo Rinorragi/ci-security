@@ -1,0 +1,11 @@
+name: Lab02 Reuse and Artifacts
+run-name: Lab02 - ${{ github.actor }} is calling Composite Actions 🚀
+permissions: read-all
+on:
+  workflow_dispatch:
+jobs:
+  example-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run hello world
+        run: echo "🎉 Step of the job is running on ${{ runner.os }}!"

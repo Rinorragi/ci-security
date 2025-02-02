@@ -1,0 +1,48 @@
+name: "Build .NET App"
+description: "Builds a .NET application using the specified version of the .NET SDK, but does not publish artifacts to GitHub."
+
+inputs:
+  folder-path:
+    description: "The path to the .NET application to build."
+    required: true
+  run-tests:
+    description: "Should we run tests after building the application?"
+    required: false
+    default: "false"
+  dotnet-version:
+    description: "The version of the .NET SDK to use."
+    required: false
+    default: "8.0"
+  output-directory-path:
+    description: "The directory where the application will be published."
+    required: false
+    default: "${{ github.workspace }}/output"
+outputs:
+  output-directory-path:
+    description: "The directory where the application was published."
+    value: ${{ inputs.output-directory-path }}
+
+runs:
+  using: composite
+  steps:
+    - name: Setup dotnet ${{ inputs.dotnet-version }}
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ inputs.dotnet-version }}
+    - name: Restore dependencies
+      shell: bash
+      run: dotnet restore
+      working-directory: ${{ inputs.folder-path}}
+    - name: Dotnet Build
+      shell: bash
+      run: dotnet build --no-restore --configuration Release
+      working-directory: ${{ inputs.folder-path}}
+    - name: Dotnet Test
+      if: ${{ inputs.run-tests == 'true' }}
+      shell: bash
+      run: dotnet test --no-build
+      working-directory: ${{ inputs.folder-path}}
+    - name: Dotnet Publish
+      shell: bash
+      run: dotnet publish -o ${{ inputs.output-directory-path}} --no-build --configuration Release
+      working-directory: ${{ inputs.folder-path}}
