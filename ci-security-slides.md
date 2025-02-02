@@ -48,6 +48,30 @@ Rinorragi & Co
 - Running on Windows / Mac images consumes more time
 - Lab00: Teaches the syntax GitHub Actions syntax
 
+---slide---
+
+## Detect threats
+
+::: {data-id="box1" style="background: #ff0000; width: 350px; height: 350px; border-radius: 200px;"}
+Tool failed (your fault)
+:::
+
+::: {data-id="box1" style="background: #00ff00; width: 350px; height: 350px; border-radius: 200px;"}
+Detect succesful (your victory)
+:::
+
+---slide---
+
+## Prevent threats
+
+::: {data-id="box1" style="background: #ff0000; width: 350px; height: 350px; border-radius: 200px;"}
+Prevention successful (your victory) or tool failed (your victory)
+:::
+
+::: {data-id="box1" style="background: #00ff00; width: 350px; height: 350px; border-radius: 200px;"}
+No threats detected or tool did not run
+:::
+
 ---page---
 
 ## Dependencies
