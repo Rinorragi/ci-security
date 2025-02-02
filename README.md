@@ -22,6 +22,7 @@ Before diving in, make sure you have the following:
    - You’ll need Git to clone and commit changes to your forked repository.
 
 3. **A text editor or IDE of your choice**
+
    - Any editor is fine; choose what you’re most comfortable using.
 
 4. **OPTIONAL: Github Actions extension for your IDE**
@@ -68,6 +69,8 @@ Apps are pretty boring.
 ## Labs
 
 - [Lab00 - Hello GitHub Actions](/labs/lab0x-hello-github-actions/lab00-hello-github-actions/README.md)
+- [Lab01 - GitHub Actions Variables and secrets](/labs/lab0x-hello-github-actions/lab01-variables-and-secrets/README.md)
+- [Lab02 - GitHub Actions Artifacts and Composite actions](/labs/lab0x-hello-github-actions/lab02-reuse-and-artifacts.yml/README.md)
 - [Lab10 - Software Composition Analysis](/labs/lab1x-dependencies/lab10-sca/README.md)
 - [Lab11 - Package locks](/labs/lab1x-dependencies/lab11-package-locks/README.md)
 - [Lab12 - License check](/labs/lab1x-dependencies/lab12-license-check/README.md)
@@ -81,8 +84,8 @@ Apps are pretty boring.
 - [Lab42 - Dynamic Application Security Testing](/labs/lab4x-testing-live-target/lab42-dast/README.md)
 - [Lab50 - SARIF file generation](/labs/lab5x-next-steps/lab50-sarif/README.md)
 - [Lab51 - githooks (contains TODO)](/labs/lab5x-next-steps/lab51-githooks/README.md)
-- [Lab52 - Defect Dojo (contains TODO)](/labs/lab5x-next-steps/lab52-defect-dojo/README.md)
-- [Lab53 - nektos/act (contains TODO)](/labs/lab5x-next-steps/lab53-act/README.md)
+- [Lab52 - Defect Dojo](/labs/lab5x-next-steps/lab52-defect-dojo/README.md)
+- [Lab53 - nektos/act](/labs/lab5x-next-steps/lab53-act/README.md)
 
 ## Tools Used
 

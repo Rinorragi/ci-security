@@ -1,10 +1,30 @@
 # Lab53 - ACT
 
-Learn how to use [nektos/act](https://github.com/nektos/act) and run pipelines locally.
+| Title          | Description                                                                                        |
+| -------------- | -------------------------------------------------------------------------------------------------- |
+| Target         | Read about how to run GitHub actions in your own machine                                           |
+| Difficulty     | Hard                                                                                               |
+| Measure        | Development velocity                                                                               |
+| Threat         | Your development process has waste of time because of having deal with the remote git repository   |
+| Detect         | Problems in GitHub Actions workflows earlier                                                       |
+| Prevent        | Broken workflow code getting into remote repository                                                |
+| Stage          | Build                                                                                              |
+| Known problems | You are advised to build your own GitHub runner images. Docker jobs inside docker might be tricky. |
 
-## TODO
+Learn how to use [nektos/act](https://github.com/nektos/act) and run pipelines locally. This removes the need of commit+push every change to test the actual pipelines which might sometimes save you a lot of time.
 
-More text and the table
+## Run 0x jobs in your own machine
+
+1. [Install Act](https://nektosact.com/installation/index.html)
+1. [Pull the runner images or build your own](https://nektosact.com/usage/runners.html)
+1. [Run either 0x workflows or jobs with act](https://nektosact.com/usage/index.html#workflows)
+
+## Links
+
+- [nektos/act](https://github.com/nektos/act)
+- [github runner images](https://github.com/actions/runner-images)
+
+## Example solution
 
 <details>
   <summary>Spoiler warning - more info about solution</summary>

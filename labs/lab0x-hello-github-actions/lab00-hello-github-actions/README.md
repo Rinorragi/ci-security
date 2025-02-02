@@ -8,7 +8,7 @@
 | Threat         | N/A                                   |
 | Detect         | N/A                                   |
 | Prevent        | N/A                                   |
-| Stage          | N/A                                   |
+| Stage          | Build                                 |
 | Known problems | N/A                                   |
 
 GitHub Actions is a powerful CI/CD platform that lets you automate tasks directly from your GitHub repository.

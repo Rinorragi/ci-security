@@ -8,7 +8,7 @@
 | Threat         | N/A                                                 |
 | Detect         | N/A                                                 |
 | Prevent        | N/A                                                 |
-| Stage          | N/A                                                 |
+| Stage          | Build, Deploy                                       |
 | Known problems | N/A                                                 |
 
 GitHub Actions offers a robust way to manage both configuration and security through Variables and Secrets. Variables let you define reusable configuration values across your workflows, making it easier to maintain and update your automation scripts. Secrets, on the other hand, enable you to securely store sensitive information—such as API keys or passwords—and ensure they remain hidden in your logs.

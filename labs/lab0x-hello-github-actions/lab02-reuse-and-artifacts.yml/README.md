@@ -8,7 +8,7 @@
 | Threat         | N/A                                                      |
 | Detect         | N/A                                                      |
 | Prevent        | N/A                                                      |
-| Stage          | N/A                                                      |
+| Stage          | Build, Deploy                                            |
 | Known problems | N/A                                                      |
 
 GitHub Actions allows you to reuse common logic or complete workflows across multiple repositories by creating **Composite Actions** or **Reusable Workflows**. This helps you maintain consistency and reduce duplication of code across your projects and environments.
