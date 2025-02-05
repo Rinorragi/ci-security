@@ -1,6 +1,6 @@
 ## Security safeguards in Continuous Integration
 
-![docs assets images](ci-security/images/kitchen.jpeg)
+![docs assets images](images/kitchen.jpeg)
 
 ---slide---
 
@@ -8,7 +8,7 @@
 
 ---slide---
 
-![docs assets images](ci-security/docs/assets/images/kitchen.jpeg)
+![docs assets images](docs/assets/images/kitchen.jpeg)
 
 ---slide---
 
