@@ -1,6 +1,6 @@
 ## Security safeguards in Continuous Integration
 
-![Image](/img/kitchen.jpeg)
+![Image](https://github.com/Rinorragi/ci-security/blob/gh-pages/img/kitchen.jpeg)
 
 ---slide---
 
