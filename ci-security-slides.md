@@ -16,7 +16,23 @@ Remember to reset the timer
 
 ## DevSecOps master class
 
+---slide---
+
 ![Potato in kitchen](images/kitchen_potato.jpeg)
+
+---slide---
+
+![Potato in kitchen](images/kitchen_potato.jpeg =250x)
+
+---slide---
+
+![Potato in kitchen](images/kitchen_potato.jpeg =10x)
+
+---slide---
+
+![Potato in kitchen](images/kitchen_potato.jpeg){ width: 200px; }
+
+---slide---
 
 - 18 labs
 - ~10 minutes for each
