@@ -126,6 +126,20 @@ If the point is to detect and not prevent, then build failures are soon to be di
 
 False positive, false negative, true positive, true negative etc.
 
+---slide---
+
+## Recap
+
+- [Lab00: Hello](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab00-hello-github-actions.yml)
+- [Lab01: Variables and secrets](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab01-variables-and-secrets.yml)
+- [Lab02: Reuse and artifacts](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab02-reuse-and-artifacts.yml)
+
+---note---
+
+- Lab00: Just print something
+- Lab01: Check variable printing and masking of data
+- Lab02: Check publish artifact part and output
+
 ---page---
 
 ## Dependencies
@@ -146,9 +160,17 @@ Somebody elses fault
 
 ## Recap
 
+- [Lab10: SCA](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab10-software-composition-analysis.yml)
+- [Lab11: Package locks](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab11-create-package-lock.yml)
+- [Lab12: License check](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab12-license-check.yml)
+- [Lab13: SBOM](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab13-sbom.yml)
+
 ---note---
 
-TODO
+- Lab10: System.Text.Json vuln and jquery vuln
+- Lab11: Nothing fancy, transient dependencies are just resolved awkwardly. Dotnet by default resolves lowest possible version of a package ... which is awkward.
+- Lab12: AGPL and also that scancode actually scans your files, not just the metadata
+- Lab13: Nothing special, just check the output
 
 ---page---
 
@@ -165,9 +187,15 @@ TODO
 
 ## Recap
 
+- [Lab20: Branch protections](https://github.com/Rinorragi/ci-security/blob/release/examples/scripts/branchprotections.ps1)
+- [Lab21: SAST](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab21-static-application-security-testing.yml)
+- [Lab22: Secret scanning](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab22-secret-scanning.yml)
+
 ---note---
 
-TODO
+- Lab20: Show the github protections
+- Lab21: Semgrep finds jquery, dockerfile and rce. GHAS does not find anything. Except in PR GHAS founds XSS and OpenRedirect too.
+- Lab22: E.g. vulnerable pipeline hardcoded secrets where not found. Trufflehog and gitleaks found azure storage key.
 
 ---page---
 
