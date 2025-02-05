@@ -1,6 +1,34 @@
 ## Security safeguards in Continuous Integration
 
-![Image](/image/kitchen.jpeg)
+![root](/kitchen.jpeg)
+
+---slide---
+
+![images](/images/kitchen.jpeg)
+
+---slide---
+
+![assets images](/assets/images/kitchen.jpeg)
+
+---slide---
+
+![docs assets images](/docs/assets/images/kitchen.jpeg)
+
+---slide---
+
+![fullurl root](https://rinorragi.github.io/ci-security/kitchen.jpeg)
+
+---slide---
+
+![fullurl images](https://rinorragi.github.io/ci-security/images/kitchen.jpeg)
+
+---slide---
+
+![fullurl assets images](https://rinorragi.github.io/ci-security/assets/images/kitchen.jpeg)
+
+---slide---
+
+![fullurl docs assets images](https://rinorragi.github.io/ci-security/docs/assets/images/kitchen.jpeg)
 
 ---slide---
 
