@@ -1,25 +1,56 @@
 ## Security safeguards in Continuous Integration
 
-Agenda:
+Rinorragi & DrBushyTop
 
-- 0:00: Theory and lab introduction
-- 0:10: Labs about GitHub Actions and dependencies
-- 1:00: Check the lab solutions
-- 1:05: Labs about development and infrastructure
-- 2:00: Check the lab solutions
-- 2:05: Labs about testing live target and next steps
-- 2:45: Check the lab solutions
-- 3:00: the end
+### Prerequisites
 
-Rinorragi & Co
+- GitHub account
+- Text editor (or browser)
+- git
+
+---note---
+
+Remember to reset the timer
 
 ---slide---
 
-## Prerequisites
+## DevSecOps master class
 
-- GitHub account with public repository
-- Text editor
-- git
+![Potato in kitchen](images/kitchen_potato.jpeg)
+
+- 18 labs
+- ~10 minutes for each
+
+---note---
+
+Hope you stretched your fingers beforehand
+
+---slide---
+
+## Agenda
+
+Agenda:
+
+- 0:00: Theory and lab introduction
+- 0:10: Labs: GitHub Actions and dependencies
+- 1:00: Recap
+- 1:05: Labs: development and infrastructure
+- 2:00: Recap
+- 2:05: Labs: testing live target and next steps
+- 2:45: Recap
+- 3:00: The end
+
+---note---
+
+You can continue anytime by your own time. Although we might change things.
+
+---slide---
+
+## Survival tips
+
+- New to DevOps? --> Focus on learning GitHub Actions
+- Completionists --> Start with answers from `examples` branch
+- CTF --> Just don't check the `examples` branch
 
 ---slide---
 
@@ -46,28 +77,54 @@ Rinorragi & Co
 - 2000 minutes free time per month
 - Run on "somebody elses VMs"
 - Running on Windows / Mac images consumes more time
-- Lab00: Teaches the syntax GitHub Actions syntax
+- Lab00-Lab02: Teaches the syntax GitHub Actions syntax
+
+---slide---
+
+```yaml [1-2|3-6|8-9|11-12]
+name: Name shown in github
+run-name: Run name shown in github
+on: # Starting triggers
+  workflow_dispatch: # Click from GitHub support
+  pull_request: # After PR is created
+  push: # After commit is pushed
+jobs:
+  Example-Job: # Set of steps that are run on a VM
+    runs-on: ubuntu-latest # type of vm
+    steps:
+      - name: Example # name of step
+        run: echo "🎉!" # Actually doing the thing
+```
 
 ---slide---
 
 ## Detect threats
 
 ```md [1|2|3]
-🔴 Tool failed (bad)
 🟢 Detect succesful (good)
 🟢 Tool not run (bad)
+🔴 Tool failed (bad)
+🔴 Detected and failed (bad)
 ```
+
+---note---
+
+If the point is to detect and not prevent, then build failures are soon to be dismissed if they by default always fail.
 
 ---slide---
 
 ## Prevent threats
 
 ```md [1|2|3|4]
+🟢 No threats (good)
 🔴 Prevention successful (good)
 🔴 Tool failed (bad)
 🟢 Tool not run (bad)
-🟢 No threats (good)
 ```
+
+---note---
+
+False positive, false negative, true positive, true negative etc.
 
 ---page---
 
@@ -79,6 +136,20 @@ Rinorragi & Co
 - Lab12: Detect problematic licenses in dependencies
 - Lab13: Generate Software Bill of Materials
 
+![Pointing potato](images/pointing_potato.jpeg)
+
+---note---
+
+Somebody elses fault
+
+---slide---
+
+## Recap
+
+---note---
+
+TODO
+
 ---page---
 
 ## Development
@@ -88,12 +159,32 @@ Rinorragi & Co
 - Lab21: Learn to find vulnerabilities in your code (SAST)
 - Lab22: Learn to find secrets from git repositories
 
+![Sad potato](images/sad_potato.jpeg)
+
+---slide---
+
+## Recap
+
+---note---
+
+TODO
+
 ---page---
 
 ## Infrastructure
 
 - Find vulnerabilities in your Infrastructure-as-Code
 - Lab30: Scan GitHub Actions pipeline and terraform iac for vulnerabilities
+
+![Builder potato](images/builder_potato.jpeg)
+
+---slide---
+
+## Recap
+
+---note---
+
+TODO
 
 ---page---
 
@@ -104,6 +195,16 @@ Rinorragi & Co
 - Lab41: Check TLS cipher suites of a web application
 - Lab42: Run application in docker container and run tests against it (DAST)
 
+![Conjuring potato](images/conjuring_potato.jpeg)
+
+---slide---
+
+## Recap
+
+---note---
+
+TODO
+
 ---page---
 
 ## Next steps
@@ -113,3 +214,13 @@ Rinorragi & Co
 - Lab51: Learn how to use githooks to prevent bad pushes
 - Lab52: Study defect dojo for application vulnerability management
 - Lab53: Lean how to run GitHub Actions in your own machine
+
+![Professor potato](images/professor_potato.jpeg)
+
+---slide---
+
+## Recap
+
+---note---
+
+TODO
