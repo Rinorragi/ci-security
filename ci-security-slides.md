@@ -16,23 +16,7 @@ Remember to reset the timer
 
 ## DevSecOps master class
 
----slide---
-
-![Potato in kitchen](images/kitchen_potato.jpeg) <!-- .element: height="40%" -->
-
----slide---
-
-![Potato in kitchen](images/kitchen_potato.jpeg) <!-- .element: height="400" -->
-
----slide---
-
-![Potato in kitchen](images/kitchen_potato.jpeg) <!-- .element: width="40%" -->
-
----slide---
-
 ![Potato in kitchen](images/kitchen_potato.jpeg) <!-- .element: width="400" -->
-
----slide---
 
 - 18 labs
 - ~10 minutes for each
@@ -116,7 +100,7 @@ jobs:
 
 ## Detect threats
 
-```md [1|2|3]
+```md [1|2|3|4]
 🟢 Detect succesful (good)
 🟢 Tool not run (bad)
 🔴 Tool failed (bad)
@@ -146,13 +130,13 @@ False positive, false negative, true positive, true negative etc.
 
 ## Dependencies
 
+![Pointing potato](images/pointing_potato.jpeg) <!-- .element: width="400" -->
+
 - These labs focus on different threats about software dependencies
 - Lab10: Detect known vulnerabilities (SCA)
 - Lab11: Learn to control how transient dependencies are resolved
 - Lab12: Detect problematic licenses in dependencies
 - Lab13: Generate Software Bill of Materials
-
-![Pointing potato](images/pointing_potato.jpeg)
 
 ---note---
 
@@ -170,12 +154,12 @@ TODO
 
 ## Development
 
+![Sad potato](images/sad_potato.jpeg) <!-- .element: width="400" -->
+
 - These labs focus on different threats during software development
 - Lab20: Learn to protect important branches
 - Lab21: Learn to find vulnerabilities in your code (SAST)
 - Lab22: Learn to find secrets from git repositories
-
-![Sad potato](images/sad_potato.jpeg)
 
 ---slide---
 
@@ -189,10 +173,10 @@ TODO
 
 ## Infrastructure
 
+![Builder potato](images/builder_potato.jpeg) <!-- .element: width="400" -->
+
 - Find vulnerabilities in your Infrastructure-as-Code
 - Lab30: Scan GitHub Actions pipeline and terraform iac for vulnerabilities
-
-![Builder potato](images/builder_potato.jpeg)
 
 ---slide---
 
@@ -206,12 +190,12 @@ TODO
 
 ## Testing live target
 
+![Conjuring potato](images/conjuring_potato.jpeg) <!-- .element: width="400" -->
+
 - These labs focus on running test against live target
 - Lab40: Check security headers of an web application
 - Lab41: Check TLS cipher suites of a web application
 - Lab42: Run application in docker container and run tests against it (DAST)
-
-![Conjuring potato](images/conjuring_potato.jpeg)
 
 ---slide---
 
@@ -225,13 +209,13 @@ TODO
 
 ## Next steps
 
+![Professor potato](images/professor_potato.jpeg) <!-- .element: width="400" -->
+
 - These labs are miscellanous advanced topics:
 - Lab50: Learn how to generate your own static analysis results interchange format files
 - Lab51: Learn how to use githooks to prevent bad pushes
 - Lab52: Study defect dojo for application vulnerability management
 - Lab53: Lean how to run GitHub Actions in your own machine
-
-![Professor potato](images/professor_potato.jpeg)
 
 ---slide---
 
