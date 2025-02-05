@@ -18,19 +18,19 @@ Remember to reset the timer
 
 ---slide---
 
-![Potato in kitchen](images/kitchen_potato.jpeg)
+![Potato in kitchen](images/kitchen_potato.jpeg) <!-- .element: height="40%" -->
 
 ---slide---
 
-![Potato in kitchen](images/kitchen_potato.jpeg =250x)
+![Potato in kitchen](images/kitchen_potato.jpeg) <!-- .element: height="400" -->
 
 ---slide---
 
-![Potato in kitchen](images/kitchen_potato.jpeg =10x)
+![Potato in kitchen](images/kitchen_potato.jpeg) <!-- .element: width="40%" -->
 
 ---slide---
 
-![Potato in kitchen](images/kitchen_potato.jpeg){ width: 200px; }
+![Potato in kitchen](images/kitchen_potato.jpeg) <!-- .element: width="400" -->
 
 ---slide---
 
