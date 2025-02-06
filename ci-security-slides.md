@@ -48,18 +48,31 @@ You can continue anytime by your own time. Although we might change things.
 
 ## Survival tips
 
-- New to DevOps? ⇨ Focus on learning GitHub Actions
-- Completionists ⇨ Start with answers from `release/examples` branch
-- CTF ⇨ Just don't check the `release/examples` branch
+- New to DevOps?
+
+  ⇨ Focus on learning GitHub Actions
+
+- Completionists
+
+  ⇨ Start with answers from `release/examples` branch
+
+- CTF
+
+  ⇨ Just don't check the `release/examples` branch
 
 ---slide---
 
 ## How the labs work
 
-- Fork the repository: <https://github.com/Rinorragi/ci-security>
+- Fork the repository:
+
+  <https://github.com/Rinorragi/ci-security>
+
 - Read the `/labs/*`
 - Make your own solution under `/.github/workflows`
-- Check example solutions from <https://github.com/Rinorragi/ci-security/tree/release/examples>
+- Check example solutions from
+
+  <https://github.com/Rinorragi/ci-security/tree/release/examples>
 
 ---slide---
 
@@ -200,7 +213,7 @@ Somebody elses fault
 ---note---
 
 - Lab20: Show the github protections
-- Lab21: Semgrep finds jquery, dockerfile and rce. GHAS does not find anything. Except in PR GHAS founds XSS and OpenRedirect too.
+- Lab21: Semgrep finds jquery, dockerfile and rces. GHAS will find url redirect and deserialization. Also XSS in pr.
 - Lab22: E.g. vulnerable pipeline hardcoded secrets where not found. Trufflehog and gitleaks found azure storage key.
 
 ---page---
@@ -259,7 +272,10 @@ Somebody elses fault
 
 ![Professor potato](images/professor_potato.jpeg) <!-- .element: width="400" -->
 
-- These labs are miscellanous advanced topics:
+---slide---
+
+These labs are miscellanous advanced topics:
+
 - Lab50: Learn how to generate your own static analysis results interchange format files
 - Lab51: Learn how to use githooks to prevent bad pushes
 - Lab52: Study defect dojo for application vulnerability management
@@ -275,5 +291,5 @@ Somebody elses fault
 
 - Lab50: Show how it integrates with github
 - Lab51: Show an example how in given branch commit is blocked with commit msg being wrong
-- Lab52: ???
+- Lab52: Show something
 - Lab53: Show how act works in your machine
