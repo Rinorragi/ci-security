@@ -48,9 +48,9 @@ You can continue anytime by your own time. Although we might change things.
 
 ## Survival tips
 
-- New to DevOps? --> Focus on learning GitHub Actions
-- Completionists --> Start with answers from `examples` branch
-- CTF --> Just don't check the `examples` branch
+- New to DevOps? ⇨ Focus on learning GitHub Actions
+- Completionists ⇨ Start with answers from `release/examples` branch
+- CTF ⇨ Just don't check the `release/examples` branch
 
 ---slide---
 
@@ -146,15 +146,18 @@ False positive, false negative, true positive, true negative etc.
 
 ![Pointing potato](images/pointing_potato.jpeg) <!-- .element: width="400" -->
 
-- These labs focus on different threats about software dependencies
+---note---
+
+Somebody elses fault
+
+---slide---
+
+### These labs focus on different threats about software dependencies
+
 - Lab10: Detect known vulnerabilities (SCA)
 - Lab11: Learn to control how transient dependencies are resolved
 - Lab12: Detect problematic licenses in dependencies
 - Lab13: Generate Software Bill of Materials
-
----note---
-
-Somebody elses fault
 
 ---slide---
 
@@ -178,7 +181,10 @@ Somebody elses fault
 
 ![Sad potato](images/sad_potato.jpeg) <!-- .element: width="400" -->
 
-- These labs focus on different threats during software development
+---slide---
+
+### These labs focus on different threats during software development
+
 - Lab20: Learn to protect important branches
 - Lab21: Learn to find vulnerabilities in your code (SAST)
 - Lab22: Learn to find secrets from git repositories
@@ -203,7 +209,10 @@ Somebody elses fault
 
 ![Builder potato](images/builder_potato.jpeg) <!-- .element: width="400" -->
 
-- Find vulnerabilities in your Infrastructure-as-Code
+---slide---
+
+### Find vulnerabilities in your Infrastructure-as-Code
+
 - Lab30: Scan GitHub Actions pipeline and terraform iac for vulnerabilities
 
 ---slide---
@@ -222,7 +231,10 @@ Somebody elses fault
 
 ![Conjuring potato](images/conjuring_potato.jpeg) <!-- .element: width="400" -->
 
-- These labs focus on running test against live target
+---slide---
+
+### These labs focus on running test against live target
+
 - Lab40: Check security headers of an web application
 - Lab41: Check TLS cipher suites of a web application
 - Lab42: Run application in docker container and run tests against it (DAST)
@@ -262,3 +274,6 @@ Somebody elses fault
 ---note---
 
 - Lab50: Show how it integrates with github
+- Lab51: Show an example how in given branch commit is blocked with commit msg being wrong
+- Lab52: ???
+- Lab53: Show how act works in your machine
