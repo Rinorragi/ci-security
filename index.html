@@ -15,6 +15,20 @@
 
     <!-- Theme used for syntax highlighted code -->
     <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+    <style>
+      /* Global footer styling */
+      .global-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.8); /* semi-transparent */
+        font-size: 0.9em;
+        z-index: 10;
+      }
+    </style>
   </head>
   <body>
     <div class="reveal">
@@ -32,6 +46,13 @@
 						-->
         </section>
       </div>
+      <!-- Global footer element -->
+      <footer class="global-footer">
+        Labs:
+        <a href="https://github.com/Rinorragi/ci-security"
+          >https://github.com/Rinorragi/ci-security</a
+        >
+      </footer>
     </div>
 
     <script src="dist/reveal.js"></script>
