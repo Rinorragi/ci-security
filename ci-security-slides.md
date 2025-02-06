@@ -210,9 +210,11 @@ Somebody elses fault
 
 ## Recap
 
+- [Lab30: IaC scanning](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab30-infrastructure-as-code-scanning.yml)
+
 ---note---
 
-TODO
+- Lab30: Show both output and security tab
 
 ---page---
 
@@ -229,9 +231,15 @@ TODO
 
 ## Recap
 
+- [Lab40: Header scanning](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab40-http-header-scanning.yml)
+- [Lab41: TLS scanning](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab41-tls-scanning.yml)
+- [Lab42: DAST](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab42-dast.yml)
+
 ---note---
 
-TODO
+- Lab40: Needs public target. Show output.
+- Lab41: Show the results. Also remind that it matters from which machine and how this is done. (nmap results wary)
+- Lab42: Show nuclei, zap and ffuf results. Should find postinfo.html from ffuf.
 
 ---page---
 
@@ -249,6 +257,8 @@ TODO
 
 ## Recap
 
+- [Lab50: SARIF](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab50-sarif.yml)
+
 ---note---
 
-TODO
+- Lab50: Show how it integrates with github
