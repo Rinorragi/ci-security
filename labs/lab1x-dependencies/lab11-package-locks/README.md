@@ -1,15 +1,15 @@
 # Lab13 - Create Package Lock
 
-| Title          | Description                                                                                                                                |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| Target         | Learn to lock exact versions of transient dependencies (not direct)                                                                        |
-| Difficulty     | Easy                                                                                                                                       |
-| Measure        | Dependencies and their exact versions                                                                                                      |
-| Threat         | Rogue package maintainer you are dependant would publish new malicious patch version of dependency that you are transiently dependant upon |
-| Detect         | N/A                                                                                                                                        |
-| Prevent        | Changes in any dependency without you deliberately updating them                                                                           |
-| Stage          | Build                                                                                                                                      |
-| Known problems | Ecosystems tend to act differently on this matter                                                                                          |
+| Title          | Description                                                                                                                         |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Target         | Learn to lock exact versions of transient dependencies (not direct)                                                                 |
+| Difficulty     | Easy                                                                                                                                |
+| Measure        | Dependencies and their exact versions                                                                                               |
+| Threat         | Package maintainer goes rogue and would publish new malicious patch version of a dependency that you are transiently dependant upon |
+| Detect         | N/A                                                                                                                                 |
+| Prevent        | Changes in any dependency without you deliberately updating them                                                                    |
+| Stage          | Build                                                                                                                               |
+| Known problems | Ecosystems tend to act differently on this matter                                                                                   |
 
 Package locks are files (e.g., `packages.lock.json` for .NET or `package-lock.json` for Node.js) that record the exact versions of your direct and transitive dependencies at the time they were installed.
 

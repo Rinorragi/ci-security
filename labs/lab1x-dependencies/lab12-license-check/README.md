@@ -11,7 +11,7 @@
 | Stage          | Build                                                                                                    |
 | Known problems | Your direct dependencies might have different license than files and dependencies that is dependant upon |
 
-Managing open-source licenses is a critical part of software governance and compliance. In this lab, you’ll detect all licenses used by your project and fail the build if anything other than MIT is discovered — while also learning to make exceptions where necessary. Tools like `Scancode`, Dotnet `Delice`, and `NPM license checker` can help automate license scanning across different ecosystems, ensuring you maintain visibility and control over your dependencies’ legal requirements.
+Managing open-source licenses is a critical part of software governance and compliance. In this lab, you’ll detect all licenses used by your project and fail the build if anything other than MIT is discovered — while also learning to make exceptions where necessary. Tools like `Scancode`, `dotnet delice`, and `NPM license checker` can help automate license scanning across different ecosystems, ensuring you maintain visibility and control over your dependencies’ legal requirements.
 
 ## Find used licenses and fail on unknowns
 

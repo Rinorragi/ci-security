@@ -13,7 +13,7 @@
 
 Infrastructure-as-Code (IaC) frameworks let you describe and provision environments using version-controlled templates. However, these templates can introduce misconfigurations that jeopardize your security posture—often before you even deploy. By integrating IaC scanning tools such as `Checkov` into your CI pipeline, you can flag potential risks and fix them at the earliest stages of development, minimizing security gaps and compliance violations.
 
-Cloud services also provide tools like `Azure Policy` and `AWS Config` to enforce compliance and security policies on your cloud resources. These tools can be used to scan your cloud resources for misconfigurations and enforce policies to prevent them.
+Cloud services also provide tools like `Azure Policy` and `AWS Config` to enforce compliance and security policies on your cloud resources. These tools can be used to scan your cloud resources for misconfigurations and enforce policies to prevent them. You might have heard also about `Cloud Security Posture Management` solutions like `Defender for Cloud` but they start working after deployment not before.
 
 In this lab, you’ll learn how to set up IaC scanning in GitHub Actions using `Checkov`.
 
