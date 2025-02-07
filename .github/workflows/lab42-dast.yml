@@ -32,6 +32,9 @@ jobs:
           Write-Host "TargetIP was $targetIp"
           $target = "http://"+$targetIp+":8080"
 
+          Write-Host "-- Wait for the docker for a moment"
+          Start-Sleep -Seconds 10
+
           Write-Host "-- Create results folder"
           mkdir ${{github.workspace}}/zapreports
 
@@ -77,6 +80,9 @@ jobs:
           Write-Host "TargetIP was $targetIp"
           $target = "http://"+$targetIp+":8080"
 
+          Write-Host "-- Wait for the docker for a moment"
+          Start-Sleep -Seconds 10
+
           Write-Host "-- Create results folder"
           mkdir ${{github.workspace}}/nucleireports
 
@@ -117,6 +123,9 @@ jobs:
           $targetIp = docker inspect --format '{{ .NetworkSettings.IPAddress }}' $containerId
           Write-Host "TargetIP was $targetIp"
           $target = "http://"+$targetIp+":8080/FUZZ"
+
+          Write-Host "-- Wait for the docker for a moment"
+          Start-Sleep -Seconds 10
 
           Write-Host "-- Create results folder"
           mkdir ${{github.workspace}}/ffufreports

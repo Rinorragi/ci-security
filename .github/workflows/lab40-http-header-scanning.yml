@@ -13,7 +13,38 @@ on:
   # Make it possible to manually run this workflow
   workflow_dispatch:
 jobs:
-  http-header-scanning:
+  venom-http-scanning:
+    runs-on: ubuntu-latest
+    # Steps to actually build the application
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install venom
+        run: |
+          curl https://github.com/ovh/venom/releases/download/v1.1.0/venom.linux-amd64 -L -o /usr/local/bin/venom && chmod +x /usr/local/bin/venom
+          venom -h
+      - name: Run the app
+        run: |
+          Write-Host "-- Build docker"
+          docker build -t vulnerable-app-image -f ./apps/vulnerable-app/Dockerfile .
+
+          Write-Host "-- Run docker"
+          $containerId = docker run --tty --detach vulnerable-app-image --publish 8080:8080
+
+          Write-Host "-- Fetch IP"
+          $targetIp = docker inspect --format '{{ .NetworkSettings.IPAddress }}' $containerId
+          Write-Host "TargetIP was $targetIp"
+          $target = "http://"+$targetIp+":8080"
+
+          Write-Host "-- Wait for the docker for a moment"
+          Start-Sleep -Seconds 10
+
+          Write-Host "-- Fetch something from target"
+          curl $target
+
+          Write-Host "-- Run venom"
+          venom run --var="target_site=$target" ./scripts/oshp_validator_tests_suite.yml
+  mdn-http-observatory-scanning:
     runs-on: ubuntu-latest
     # Steps to actually build the application
     steps:
