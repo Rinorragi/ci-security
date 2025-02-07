@@ -1,11 +1,25 @@
+# Name of the workflow
 name: Lab20 List branch protections
+# How the workflow run is named in GitHub
 run-name: Lab20 - ${{ github.actor }} is listing branch protections with GraphQL 🚀
 permissions: read-all
+# Set your preferences for the script
+defaults:
+  run:
+    shell: pwsh
 on:
+  # Make it possible to other workflows to call this
+  workflow_call:
+  # Make it possible to manually run this workflow
   workflow_dispatch:
+# The actual jobs
 jobs:
-  example-job:
+  Branch-Protections:
     runs-on: ubuntu-latest
     steps:
-      - name: Run hello world
-        run: echo "🎉 Step of the job is running on ${{ runner.os }}!"
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Check branch protections
+        run: ./scripts/branchprotections.ps1
+        env:
+          GH_TOKEN: ${{ secrets.READ_PAT }}

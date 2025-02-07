@@ -1,11 +1,102 @@
+# Name of the workflow
 name: Lab12 License check
+# How the workflow run is named in GitHub
 run-name: Lab12 - ${{ github.actor }} is inspecting used licenses 🔎
 permissions: read-all
+# Set your preferences for the script
+defaults:
+  run:
+    shell: pwsh
 on:
+  # Make it possible to other workflows to call this
+  workflow_call:
+  # Make it possible to manually run this workflow
   workflow_dispatch:
 jobs:
-  example-job:
+  Check-licensed-with-delice:
+    name: "Licenses: delice"
     runs-on: ubuntu-latest
+    # Steps to actually build the application
     steps:
-      - name: Run hello world
-        run: echo "🎉 Step of the job is running on ${{ runner.os }}!"
+      # Check out the git repository
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Ensure proper version of .NET
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "8.0.x"
+      - name: Restore
+        run: dotnet restore
+      - name: Setup delice
+        run: dotnet tool install -g dotnet-delice
+      - name: Check licenses with Delice
+        run: |
+          $unwantedLicenses = ./scripts/licenseaudit.ps1 | Where-Object { $_ -ne "MIT" }
+          if ($unwantedLicenses -gt 0) {
+            # Set proper error message
+            echo "::error file=scripts/licenseaudit.ps1,title=Unwanted licenses detected::Unwanted licenses detected: $unwantedLicenses"
+            # Error message does not fail the job, use exit 1 to actually make it fail
+            exit 1
+          }
+
+  Check-licensed-with-project-licenses:
+    name: "Licenses: dotnet-project-licenses"
+    runs-on: ubuntu-latest
+    # Steps to actually build the application
+    steps:
+      # Check out the git repository
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Ensure proper version of .NET
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "8.0.x"
+      - name: Restore
+        run: dotnet restore
+      - name: Setup dotnet-project-licenses
+        run: dotnet tool install -g dotnet-project-licenses
+      - name: Check licenses with dotnet-project-licenses
+        run: |
+          $allowedLicenses = "[`"MIT`"]" | Out-File allowed.json
+          dotnet-project-licenses --input . --allowed-license-types allowed.json
+
+  Check-licensed-with-scancode:
+    name: "Licenses: scancode"
+    runs-on: ubuntu-latest
+    # Steps to actually build the application
+    steps:
+      # Check out the git repository
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          path: scancode-inputs
+      # Ensure proper version of .NET
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "8.0.x"
+      - name: Restore
+        run: dotnet restore scancode-inputs/ci-security.sln
+      - name: Install ScanCode
+        run: pip install scancode-toolkit[full]
+      - name: Create folder for reports
+        run: mkdir reports
+      - name: Run ScanCode
+        run: scancode --license --email --license-score 70 -n 10 ./scancode-inputs --html reports/output.html --json-pp reports/output.json
+      - name: Upload Test results
+        uses: actions/upload-artifact@master
+        if: ${{ always() }}
+        with:
+          name: Scancode report
+          path: ${{github.workspace}}/reports
+      - name: Check licenses found with scancode
+        run: |
+          $unwantedLicenses = ./scancode-inputs/scripts/scancodeaudit.ps1 ./reports/output.json | Where-Object { $_ -ne "MIT" }
+          if ($unwantedLicenses -gt 0) {
+            # Set proper error message
+            echo "::error file=scripts/scancodeaudit.ps1,title=Unwanted licenses detected::Unwanted licenses detected: $unwantedLicenses"
+            # Error message does not fail the job, use exit 1 to actually make it fail
+            exit 1
+          }

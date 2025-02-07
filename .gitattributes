@@ -1,1 +1,4 @@
 * text=auto eol=crlf
+
+# Force githooks to be LF
+.githooks/* eol=lf
