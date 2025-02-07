@@ -1,4 +1,4 @@
-# Check the fields you want from https://docs.github.com/en/graphql/reference/objects#branchprotectionrule
+# Check the fields you want from https://docs.github.com/en/graphql/reference/objects#repositoryruleset
 $query = @"
 query {
   repository(name:"ci-security", owner:"Rinorragi") {
