@@ -36,6 +36,9 @@ jobs:
           Write-Host "TargetIP was $targetIp"
           $target = "http://"+$targetIp+":8080"
 
+          Write-Host "-- Wait for the docker for a moment"
+          Start-Sleep -Seconds 10
+
           Write-Host "-- Fetch something from target"
           curl $target
 
