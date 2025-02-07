@@ -87,6 +87,8 @@ You can continue anytime by your own time. Although we might change things.
 ## GitHub Actions
 
 - GitHub Actions are based on YAML.
+- `.yml`-files needs to be in `.github/workflows` in `main` branch
+- You can run different version of a workflow from other branch
 - 2000 minutes free time per month
 - Run on "somebody elses VMs"
 - Running on Windows / Mac images consumes more time
@@ -172,6 +174,10 @@ Somebody elses fault
 - Lab12: Detect problematic licenses in dependencies
 - Lab13: Generate Software Bill of Materials
 
+---note---
+
+Recap at 1:00
+
 ---slide---
 
 ## Recap
@@ -182,6 +188,8 @@ Somebody elses fault
 - [Lab13: SBOM](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab13-sbom.yml)
 
 ---note---
+
+Recap: 1:00
 
 - Lab10: System.Text.Json vuln and jquery vuln
 - Lab11: Nothing fancy, transient dependencies are just resolved awkwardly. Dotnet by default resolves lowest possible version of a package ... which is awkward.
@@ -228,6 +236,10 @@ Somebody elses fault
 
 - Lab30: Scan GitHub Actions pipeline and terraform iac for vulnerabilities
 
+---note---
+
+Recap: 2:00
+
 ---slide---
 
 ## Recap
@@ -235,6 +247,8 @@ Somebody elses fault
 - [Lab30: IaC scanning](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab30-infrastructure-as-code-scanning.yml)
 
 ---note---
+
+Recap: 2:00
 
 - Lab30: Show both output and security tab
 
@@ -281,6 +295,10 @@ These labs are miscellanous advanced topics:
 - Lab52: Study defect dojo for application vulnerability management
 - Lab53: Lean how to run GitHub Actions in your own machine
 
+---note---
+
+Recap 2:45
+
 ---slide---
 
 ## Recap
@@ -288,6 +306,8 @@ These labs are miscellanous advanced topics:
 - [Lab50: SARIF](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab50-sarif.yml)
 
 ---note---
+
+Recap: 2:45
 
 - Lab50: Show how it integrates with github
 - Lab51: Show an example how in given branch commit is blocked with commit msg being wrong
