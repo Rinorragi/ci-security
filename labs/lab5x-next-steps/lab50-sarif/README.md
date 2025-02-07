@@ -30,9 +30,9 @@ OASIS SARIF is standard for common output format for static analysis tools. Unde
 
 ## Example solution
 
-- Code: <https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab11-sarif.yml>
-- Runs: <https://github.com/Rinorragi/ci-security/actions/workflows/lab11-sarif.yml>
-- Script: <https://github.com/Rinorragi/ci-security/scripts/mozilla-observatory-sarif-generator.ps1>
+- Code: <https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab50-sarif.yml>
+- Runs: <https://github.com/Rinorragi/ci-security/actions/workflows/lab50-sarif.yml>
+- Script: <https://github.com/Rinorragi/ci-security/tree/release/examples/scripts/mozilla-observatory-sarif-generator.ps1>
 
 <details>
   <summary>Spoiler warning - more info about solution</summary>

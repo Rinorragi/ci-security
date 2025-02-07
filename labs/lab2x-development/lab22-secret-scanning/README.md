@@ -30,5 +30,5 @@ In this lab, you’ll configure secret scanning tools to identify and protect ag
 
 ## Example solution
 
-- Code: <https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab07-secret-scanning.yml>
-- Runs: <https://github.com/Rinorragi/ci-security/actions/workflows/lab07-secret-scanning.yml>
+- Code: <https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab22-secret-scanning.yml>
+- Runs: <https://github.com/Rinorragi/ci-security/actions/workflows/lab22-secret-scanning.yml>

@@ -27,8 +27,8 @@ GitHub Advanced Security and Semgrep Community Edition are something that you co
 
 ## Example solution
 
-- Code: <https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab06-static-application-security-testing.yml>
-- Runs: <https://github.com/Rinorragi/ci-security/actions/workflows/lab06-static-application-security-testing.yml>
+- Code: <https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab21-static-application-security-testing.yml>
+- Runs: <https://github.com/Rinorragi/ci-security/actions/workflows/lab21-static-application-security-testing.yml>
 
 <details>
   <summary>Spoiler warning - solution</summary>

@@ -43,8 +43,8 @@ You can check the [vulnerable-pipeline](/.github/workflows/vulnerable-pipeline.y
 
 ## Solution
 
-- Code: <https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab12-dast.yml>
-- Runs: <https://github.com/Rinorragi/ci-security/actions/workflows/lab12-dast.yml>
+- Code: <https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab42-dast.yml>
+- Runs: <https://github.com/Rinorragi/ci-security/actions/workflows/lab42-dast.yml>
 
 <details>
   <summary>Spoiler warning - more info about solution</summary>

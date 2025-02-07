@@ -34,5 +34,5 @@ In this lab, you’ll set up a workflow to scan the HTTP headers of your web app
 
 ## Example solution
 
-- Code: <https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab09-http-header-scanning.yml>
-- Runs: <https://github.com/Rinorragi/ci-security/actions/workflows/lab09-http-header-scanning.yml>
+- Code: <https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab40-http-header-scanning.yml>
+- Runs: <https://github.com/Rinorragi/ci-security/actions/workflows/lab40-http-header-scanning.yml>
