@@ -40,7 +40,7 @@ First push to a new branch is not considered as a change. Requiring pull-request
 - About protected branches: <https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches>
 - Branch protection rules: <https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule>
 - GraphQL Explorer: <https://docs.github.com/en/graphql/overview/explorer>
-- GraphQL Schema for Rulesets: <https://docs.github.com/en/graphql/reference/objects#repositoryrulesetconnection>
+- GraphQL Schema for Rulesets: <https://docs.github.com/en/graphql/reference/objects#repositoryruleset>
 - GraphQL Schema for Branch protections (Older implemetation): <https://docs.github.com/en/graphql/reference/objects#branchprotectionrule>
 
 ## Example solution
