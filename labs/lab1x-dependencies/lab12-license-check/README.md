@@ -1,15 +1,15 @@
 # Lab05 - License check
 
-| Title          | Description                                                                                              |
-| -------------- | -------------------------------------------------------------------------------------------------------- |
-| Target         | Learn to detect problematic software licenses in your dependencies                                       |
-| Difficulty     | Hard                                                                                                     |
-| Measure        | Amount of different licenses you are dependant upon                                                      |
-| Threat         | You violate license agreement and would have legal consequences because of that                          |
-| Detect         | Licenses that are being used                                                                             |
-| Prevent        | Using dependencies that have licenses that are unaccetable for your use case                             |
-| Stage          | Build                                                                                                    |
-| Known problems | Your direct dependencies might have different license than files and dependencies that is dependant upon |
+| Title          | Description                                                                                                                                                                                                        |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Target         | Learn to detect problematic software licenses in your dependencies                                                                                                                                                 |
+| Difficulty     | Hard                                                                                                                                                                                                               |
+| Measure        | Amount of different licenses you are dependant upon                                                                                                                                                                |
+| Threat         | You violate license agreement and would have legal consequences because of that                                                                                                                                    |
+| Detect         | Licenses that are being used                                                                                                                                                                                       |
+| Prevent        | Using dependencies that have licenses that are unaccetable for your use case                                                                                                                                       |
+| Stage          | Build                                                                                                                                                                                                              |
+| Known problems | Your direct dependencies might have different license than files and dependencies that is dependant upon. We had problems trying to use the `Scancode` Github action, so maybe try using the CLI directly instead. |
 
 Managing open-source licenses is a critical part of software governance and compliance. In this lab, you’ll detect all licenses used by your project and fail the build if anything other than MIT is discovered — while also learning to make exceptions where necessary. Tools like `Scancode`, `dotnet delice`, and `NPM license checker` can help automate license scanning across different ecosystems, ensuring you maintain visibility and control over your dependencies’ legal requirements.
 
