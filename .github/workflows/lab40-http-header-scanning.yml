@@ -13,14 +13,16 @@ on:
   # Make it possible to manually run this workflow
   workflow_dispatch:
 jobs:
-  http-header-scanning:
+  venom-http-scanning:
     runs-on: ubuntu-latest
     # Steps to actually build the application
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install Mozilla Observatory
-        run: npm install --global @mdn/mdn-http-observatory
+      - name: Install venom
+        run: |
+          curl https://github.com/ovh/venom/releases/download/v1.1.0/venom.linux-amd64 -L -o /usr/local/bin/venom && chmod +x /usr/local/bin/venom
+          venom -h
       - name: Run the app
         run: |
           $password = "OH_NOES_EXPOSED_PASSWORD_IS_BAD"
@@ -44,5 +46,16 @@ jobs:
           Write-Host "TargetIP was $targetIp"
           $target = "https://"+$targetIp+":$httpsPort"
 
-          Write-Host "Fetch something from target"
-          mdn-http-observatory-scan $target
+          Write-Host "-- Fetch something from target"
+          curl --insecure $target
+
+          Write-Host "-- Run venom"
+          venom run --var="target_site=https://mysite.com" ./scripts/oshp_validator_tests_suite.yml
+  mdn-http-observatory-scanning:
+    runs-on: ubuntu-latest
+    # Steps to actually build the application
+    steps:
+      - name: Install Mozilla Observatory
+        run: npm install --global @mdn/mdn-http-observatory
+      - name: Run Mozilla Observatory
+        run: mdn-http-observatory-scan huuhka.net
