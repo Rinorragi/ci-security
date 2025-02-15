@@ -1,0 +1,2 @@
+#!/bin/sh
+pwsh -ExecutionPolicy RemoteSigned -File 'scripts/githooks/pre-commit-file-list.ps1'

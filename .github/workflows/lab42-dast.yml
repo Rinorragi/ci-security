@@ -1,11 +1,143 @@
+# Name of the workflow
 name: Lab42 DAST
+# How the workflow run is named in GitHub
 run-name: Lab42 - ${{ github.actor }} is running DAST scans 🚀
 permissions: read-all
+# Set your preferences for the script
+defaults:
+  run:
+    shell: pwsh
 on:
+  # Make it possible to other workflows to call this
+  workflow_call:
+  # Make it possible to manually run this workflow
   workflow_dispatch:
 jobs:
-  example-job:
+  zap-scanning:
     runs-on: ubuntu-latest
+    # Steps to actually build the application
     steps:
-      - name: Run hello world
-        run: echo "🎉 Step of the job is running on ${{ runner.os }}!"
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build docker image and run ZAP scan
+        run: |
+          Write-Host "-- Build docker"
+          docker build -t vulnerable-app-image -f ./apps/vulnerable-app/Dockerfile .
+
+          Write-Host "-- Run docker"
+          $containerId = docker run --tty --detach vulnerable-app-image --publish 8080:8080
+
+          Write-Host "-- Fetch IP"
+          $targetIp = docker inspect --format '{{ .NetworkSettings.IPAddress }}' $containerId
+          Write-Host "TargetIP was $targetIp"
+          $target = "http://"+$targetIp+":8080"
+
+          Write-Host "-- Wait for the docker for a moment"
+          Start-Sleep -Seconds 10
+
+          Write-Host "-- Create results folder"
+          mkdir ${{github.workspace}}/zapreports
+
+          Write-Host "-- Chmod results folder rights"
+          chmod -R a+rw ${{github.workspace}}/zapreports
+
+          Write-Host "-- Run docker ZAP"
+          docker run -v ${{github.workspace}}/zapreports:/zap/wrk:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t $target -J report_json.json -w report_md.md -r report_html.html -a
+
+      - name: Upload Test results
+        uses: actions/upload-artifact@master
+        if: ${{ always() }}
+        with:
+          name: ZAP report
+          path: ${{github.workspace}}/zapreports
+  # Commented out because it looked like the next step did not have anymore network access to last steps running target
+  # Still pretty handy if you have live target
+  #      - name: ZAP Scan
+  #        uses: zaproxy/action-full-scan@v0.12.0
+  #        env:
+  #          ZAP_TARGET:
+  #        with:
+  #          token: ${{ secrets.GITHUB_TOKEN }} # to create issues in repository
+  #          docker_name: "ghcr.io/zaproxy/zaproxy:stable"
+  #          target: "http://${{ steps.docker-build.outputs.ZAP_TARGET_IP }}"
+  #          cmd_options: "-a"
+  nuclei-scanning:
+    runs-on: ubuntu-latest
+    # Steps to actually build the application
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build docker image and run nuclei scan
+        run: |
+          Write-Host "-- Build docker"
+          docker build -t vulnerable-app-image -f ./apps/vulnerable-app/Dockerfile .
+
+          Write-Host "-- Run docker"
+          $containerId = docker run --tty --detach vulnerable-app-image --publish 8080:8080
+
+          Write-Host "-- Fetch IP"
+          $targetIp = docker inspect --format '{{ .NetworkSettings.IPAddress }}' $containerId
+          Write-Host "TargetIP was $targetIp"
+          $target = "http://"+$targetIp+":8080"
+
+          Write-Host "-- Wait for the docker for a moment"
+          Start-Sleep -Seconds 10
+
+          Write-Host "-- Create results folder"
+          mkdir ${{github.workspace}}/nucleireports
+
+          Write-Host "-- Chmod results folder rights"
+          chmod -R a+rw ${{github.workspace}}/nucleireports
+
+          Write-Host "-- Run docker ZAP"
+          docker run -v ${{github.workspace}}/nucleireports:/reports:rw -t projectdiscovery/nuclei:latest -u $target -j -v -o /reports/scan.json
+
+      - name: Upload Test results
+        uses: actions/upload-artifact@master
+        if: ${{ always() }}
+        with:
+          name: Nuclei report
+          path: ${{github.workspace}}/nucleireports
+
+  ffuf-scanning:
+    runs-on: ubuntu-latest
+    # Steps to actually build the application
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install latest go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "stable" # Latest stable: https://github.com/actions/setup-go
+      - name: Install ffuf
+        run: go install github.com/ffuf/ffuf/v2@latest
+      - name: Build docker image and run ffuf scan
+        run: |
+          Write-Host "-- Build docker"
+          docker build -t vulnerable-app-image -f ./apps/vulnerable-app/Dockerfile .
+
+          Write-Host "-- Run docker"
+          $containerId = docker run --tty --detach vulnerable-app-image --publish 8080:8080
+
+          Write-Host "-- Fetch IP"
+          $targetIp = docker inspect --format '{{ .NetworkSettings.IPAddress }}' $containerId
+          Write-Host "TargetIP was $targetIp"
+          $target = "http://"+$targetIp+":8080/FUZZ"
+
+          Write-Host "-- Wait for the docker for a moment"
+          Start-Sleep -Seconds 10
+
+          Write-Host "-- Create results folder"
+          mkdir ${{github.workspace}}/ffufreports
+
+          Write-Host "-- Download fuzz wordlist"
+          Invoke-WebRequest https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Discovery/Web-Content/IIS.fuzz.txt -OutFile ./iisfuzz.txt
+          Write-Host "-- Fuzz with ffuf"
+          ffuf -w ./iisfuzz.txt -u $target -json | Out-File "${{github.workspace}}/ffufreports/fuzzoutput.json"
+
+      - name: Upload Test results
+        uses: actions/upload-artifact@master
+        if: ${{ always() }}
+        with:
+          name: ffuf report
+          path: ${{github.workspace}}/ffufreports

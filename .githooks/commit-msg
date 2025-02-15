@@ -1,0 +1,3 @@
+#!/bin/sh
+COMMIT_MSG_FILE=$1
+pwsh -ExecutionPolicy RemoteSigned -File 'scripts/githooks/commit-msg-check.ps1' "$COMMIT_MSG_FILE"
