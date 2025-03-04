@@ -1,115 +1,152 @@
 ## Security safeguards in Continuous Integration
 
-Agenda:
-
-- 0:00: Theory and lab introduction
-- 0:10: Labs about GitHub Actions and dependencies
-- 1:00: Check the lab solutions
-- 1:05: Labs about development and infrastructure
-- 2:00: Check the lab solutions
-- 2:05: Labs about testing live target and next steps
-- 2:45: Check the lab solutions
-- 3:00: the end
-
-Rinorragi & Co
-
----slide---
-
-## Prerequisites
-
-- GitHub account with public repository
-- Text editor
-- git
-
----slide---
-
-## How the labs work
-
-- Fork the repository: <https://github.com/Rinorragi/ci-security>
-- Read the `/labs/*`
-- Make your own solution under `/.github/workflows`
-- Check example solutions from <https://github.com/Rinorragi/ci-security/tree/release/examples>
-
----slide---
-
-## Lab targets
-
-- 99% of time you are targeting .NET application
-- It is `dotnet new mvc` template with some small changes
-- Disclaimer: Attack only targets that you have permission for.
+Lorem ipsum
 
 ---page---
 
-## GitHub Actions
+# Detect threats
 
-- GitHub Actions are based on YAML.
-- 2000 minutes free time per month
-- Run on "somebody elses VMs"
-- Running on Windows / Mac images consumes more time
-- Lab00: Teaches the syntax GitHub Actions syntax
-
----slide---
-
-## Detect threats
-
-```md [1|2|3]
-🔴 Tool failed (bad)
+```md [1|2|3|4]
 🟢 Detect succesful (good)
 🟢 Tool not run (bad)
+🔴 Tool failed (bad)
+🔴 Detected and failed (bad)
 ```
 
----slide---
+- Start from this
+- Stick with this with slow tests
+
+---note---
+
+If the point is to detect and not prevent, then build failures are soon to be dismissed if they by default always fail.
+
+---page---
 
 ## Prevent threats
 
 ```md [1|2|3|4]
+🟢 No threats (good)
 🔴 Prevention successful (good)
 🔴 Tool failed (bad)
 🟢 Tool not run (bad)
-🟢 No threats (good)
+```
+
+- Requires high security maturity
+
+---note---
+
+False positive, false negative, true positive, true negative etc.
+
+---page---
+
+## Software Composition Analysis (SCA)
+
+**Threat**: Vulnerable and outdated components (OWASP TOP 10). Mend could be used for this.
+
+```pwsh [3]
+dotnet restore
+dotnet build
+dotnet list-package --vulnerable --include-transitive
+```
+
+```pwsh [2]
+npm install -g retire
+retire --path . --outputformat text --outputpath ./reports/output.txt --severity low --exitwith 1 --deep
+```
+
+```pwsh [1]
+dependency-check.bat --project "My App Name" --scan "folder_path"
 ```
 
 ---page---
 
-## Dependencies
+## Package locks
 
-- These labs focus on different threats about software dependencies
-- Lab10: Detect known vulnerabilities (SCA)
-- Lab11: Learn to control how transient dependencies are resolved
-- Lab12: Detect problematic licenses in dependencies
-- Lab13: Generate Software Bill of Materials
+**Threat**: Transitive dependencies changes with new malicious patch version
 
----page---
-
-## Development
-
-- These labs focus on different threats during software development
-- Lab20: Learn to protect important branches
-- Lab21: Learn to find vulnerabilities in your code (SAST)
-- Lab22: Learn to find secrets from git repositories
+```pwsh [2|4|6]
+# Create lock file
+dotnet restore --force --use-lock-file
+# Restore in locked mode
+dotnet restore --locked-mode
+# Build without restore
+dotnet build --no-restore
+```
 
 ---page---
 
-## Infrastructure
+## License check
 
-- Find vulnerabilities in your Infrastructure-as-Code
-- Lab30: Scan GitHub Actions pipeline and terraform iac for vulnerabilities
+**Threat**: Violation of license agreement or incompatible license
+
+```pwsh [2]
+dotnet tool install -g dotnet-delice
+dotnet delice your.sln --json
+```
+
+```pwsh [2]
+npm install -g license-checker
+license-checker
+```
+
+```pwsh [1]
+scancode -clpeui -n 2 --ignore "*.java" --json-pp sample.json samples
+```
 
 ---page---
 
-## Testing live target
+## Software Bill of Materials (SBOM)
 
-- These labs focus on running test against live target
-- Lab40: Check security headers of an web application
-- Lab41: Check TLS cipher suites of a web application
-- Lab42: Run application in docker container and run tests against it (DAST)
+**Threat**: Vulnerable and outdated components (OWASP TOP 10). Needs something like Dependency Track in addition.
+
+```pwsh [2]
+dotnet tool install --global CycloneDX
+dotnet CycloneDX ci-security.sln --json --exclude-dev -o ./cyclone-reports
+```
 
 ---page---
 
-## Next steps
+## Static Application Security Testing (SAST)
 
-- These labs are miscellanous advanced topics:
-- Lab50: Learn how to generate your own static analysis results interchange format files
-- Lab51: Learn how to use githooks to prevent bad pushes
-- Lab52: Study defect dojo for application vulnerability management
-- Lab53: Lean how to run GitHub Actions in your own machine
+**Threat**: Pretty much all of OWASP TOP 10 risks
+
+```pwsh [2]
+python3 -m pip install semgrep
+semgrep scan --config auto
+```
+
+```pwsh [1-6]
+docker run \
+    --rm \
+    -e SONAR_HOST_URL="http://${SONARQUBE_URL}"  \
+    -e SONAR_TOKEN="myAuthenticationToken" \
+    -v "${YOUR_REPO}:/usr/src" \
+    sonarsource/sonar-scanner-cli
+```
+
+Tons of tools available. Best are costing money. Roslyn Analyzers would be free.
+
+---page---
+
+## Secret scanning
+
+**Threat**: Publishing secrets to version control as clear text. (OWASP TOP 10: Cryptographic failure)
+
+```pwsh [1]
+trufflehog git file://. --results=verified,unknown --fail
+```
+
+```pwsh [1]
+gitleaks git --report-path gitleaks-report.json
+```
+
+---page---
+
+## Infrastructure As Code Scanning
+
+**Threat**: OWASP TOP 10 Misconfiguration
+
+```pwsh [2]
+pip install checkov
+checkov -d /user/tf
+```
