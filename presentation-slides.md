@@ -150,3 +150,42 @@ gitleaks git --report-path gitleaks-report.json
 pip install checkov
 checkov -d /user/tf
 ```
+
+---page---
+
+## HTTP Header scanning
+
+**Threat**: OWASP TOP 10 Misconfiguration (e.g. missing XSS protections)
+
+```pwsh [1]
+venom run --var="target_site=$target" ./oshp_validator_tests_suite.yml
+```
+
+---page---
+
+## TLS scanning
+
+**Threat**: OWASP TOP 10 Misconfiguration (weak transport layer security)
+
+```pwsh [1]
+docker run -v ${{github.workspace}}/testsslreports:/testsslreports:rw --rm drwetter/testssl.sh --jsonfile /testsslreports $targetIp
+```
+
+---page---
+
+## Dynamic Application Security Testing (DAST)
+
+**Threat**: OWASP TOP 10
+
+```pwsh [1]
+docker run -v ${{github.workspace}}/zapreports:/zap/wrk:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t $target -J report_json.json -w report_md.md -r report_html.html -a
+```
+
+```pwsh [1]
+docker run -v ${{github.workspace}}/nucleireports:/reports:rw -t projectdiscovery/nuclei:latest -u $target -j -v -o /reports/scan.json
+```
+
+```pwsh [2]
+Invoke-WebRequest https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Discovery/Web-Content/IIS.fuzz.txt -OutFile ./iisfuzz.txt
+ffuf -w ./iisfuzz.txt -u $target -json | Out-File "${{github.workspace}}/ffufreports/fuzzoutput.json"
+```
