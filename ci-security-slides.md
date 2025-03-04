@@ -1,34 +1,78 @@
 ## Security safeguards in Continuous Integration
 
-Agenda:
+Rinorragi & DrBushyTop
 
-- 0:00: Theory and lab introduction
-- 0:10: Labs about GitHub Actions and dependencies
-- 1:00: Check the lab solutions
-- 1:05: Labs about development and infrastructure
-- 2:00: Check the lab solutions
-- 2:05: Labs about testing live target and next steps
-- 2:45: Check the lab solutions
-- 3:00: the end
+### Prerequisites
 
-Rinorragi & Co
+- GitHub account
+- Text editor (or browser)
+- git
+
+---note---
+
+Remember to reset the timer
 
 ---slide---
 
-## Prerequisites
+## DevSecOps master class
 
-- GitHub account with public repository
-- Text editor
-- git
+![Potato in kitchen](images/kitchen_potato.jpeg) <!-- .element: width="400" -->
+
+- 19 labs
+- ~10 minutes for each
+
+---note---
+
+Hope you stretched your fingers beforehand
+
+---slide---
+
+## Agenda
+
+Agenda:
+
+- 0:00: Theory and lab introduction
+- 0:10: Labs: GitHub Actions and dependencies
+- 1:00: Recap
+- 1:10: Labs: development and infrastructure
+- 2:00: Recap
+- 2:10: Labs: testing live target and next steps
+- 2:45: Recap
+- 3:00: The end
+
+---note---
+
+You can continue anytime by your own time. Although we might change things.
+
+---slide---
+
+## Survival tips
+
+- New to DevOps?
+
+  ⇨ Focus on learning GitHub Actions
+
+- Completionists
+
+  ⇨ Start with answers from `release/examples` branch
+
+- CTF
+
+  ⇨ Just don't check the `release/examples` branch
 
 ---slide---
 
 ## How the labs work
 
-- Fork the repository: <https://github.com/Rinorragi/ci-security>
+- Fork the repository:
+
+  <https://github.com/Rinorragi/ci-security>
+
 - Read the `/labs/*`
 - Make your own solution under `/.github/workflows`
-- Check example solutions from <https://github.com/Rinorragi/ci-security/tree/release/examples>
+- Check example solutions from
+
+  <https://github.com/Rinorragi/ci-security/tree/release/examples>
 
 ---slide---
 
@@ -40,76 +84,281 @@ Rinorragi & Co
 
 ---page---
 
-## GitHub Actions
+## CI feedback loop
 
-- GitHub Actions are based on YAML.
-- 2000 minutes free time per month
-- Run on "somebody elses VMs"
-- Running on Windows / Mac images consumes more time
-- Lab00: Teaches the syntax GitHub Actions syntax
+![Running potato](images/runner_potato.png) <!-- .element: width="400" -->
+
+- Focus on fast feedback loop
+
+---note---
+
+OODA
 
 ---slide---
 
 ## Detect threats
 
-```md [1|2|3]
-🔴 Tool failed (bad)
+```md [1|2|3|4]
 🟢 Detect succesful (good)
 🟢 Tool not run (bad)
+🔴 Tool failed (bad)
+🔴 Detected and failed (bad)
 ```
+
+- Start from this
+- Stick with this with slow tests
+
+---note---
+
+If the point is to detect and not prevent, then build failures are soon to be dismissed if they by default always fail.
 
 ---slide---
 
 ## Prevent threats
 
 ```md [1|2|3|4]
+🟢 No threats (good)
 🔴 Prevention successful (good)
 🔴 Tool failed (bad)
 🟢 Tool not run (bad)
-🟢 No threats (good)
 ```
+
+- Requires high security maturity
+
+---note---
+
+False positive, false negative, true positive, true negative etc.
+
+---page---
+
+## GitHub Actions
+
+- GitHub Actions are based on YAML.
+- `.yml`-files needs to be in `.github/workflows` in `main` branch
+- You can run different version of a workflow from other branch
+- Lab00-Lab02: Teaches the syntax GitHub Actions syntax
+
+---slide---
+
+## GitHub-hosted runners
+
+- Run on "somebody elses VMs"
+- Running on Windows / Mac images consumes more time
+- Lab00-Lab02: Teaches the syntax GitHub Actions syntax
+
+---slide---
+
+```yaml [1-2|3-6|8-9|11-12]
+name: Name shown in github
+run-name: Run name shown in github
+on: # Starting triggers
+  workflow_dispatch: # Click from GitHub support
+  pull_request: # After PR is created
+  push: # After commit is pushed
+jobs:
+  Example-Job: # Set of steps that are run on a VM
+    runs-on: ubuntu-latest # type of vm
+    steps:
+      - name: Example # name of step
+        run: echo "🎉!" # Actually doing the thing
+```
+
+---slide---
+
+## Security considerations
+
+- Examples are using 3rd party actions
+- Examples are using 3rd party tools
+- These are RCE-vector to your IPR (code)
+
+---slide---
+
+## Recap
+
+- [Lab00: Hello](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab00-hello-github-actions.yml)
+- [Lab01: Variables and secrets](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab01-variables-and-secrets.yml)
+- [Lab02: Reuse and artifacts](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab02-reuse-and-artifacts.yml)
+
+---note---
+
+- Lab00: Just print something
+- Lab01: Check variable printing and masking of data
+- Lab02: Check publish artifact part and output
 
 ---page---
 
 ## Dependencies
 
-- These labs focus on different threats about software dependencies
+![Pointing potato](images/pointing_potato.jpeg) <!-- .element: width="400" -->
+
+---note---
+
+Somebody elses fault
+
+---slide---
+
+### These labs focus on different threats about software dependencies
+
 - Lab10: Detect known vulnerabilities (SCA)
 - Lab11: Learn to control how transient dependencies are resolved
 - Lab12: Detect problematic licenses in dependencies
 - Lab13: Generate Software Bill of Materials
 
+---note---
+
+Recap at 1:00
+
+---slide---
+
+## Recap
+
+- [Lab10: SCA](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab10-software-composition-analysis.yml)
+- [Lab11: Package locks](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab11-create-package-lock.yml)
+- [Lab12: License check](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab12-license-check.yml)
+- [Lab13: SBOM](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab13-sbom.yml)
+
+---note---
+
+Recap: 1:00
+
+- Lab10: System.Text.Json vuln and jquery vuln
+- Lab11: Nothing fancy, transient dependencies are just resolved awkwardly. Dotnet by default resolves lowest possible version of a package ... which is awkward.
+- Lab12: AGPL and also that scancode actually scans your files, not just the metadata
+- Lab13: Nothing special, just check the output
+
 ---page---
 
 ## Development
 
-- These labs focus on different threats during software development
+![Sad potato](images/sad_potato.jpeg) <!-- .element: width="400" -->
+
+---slide---
+
+### These labs focus on different threats during software development
+
 - Lab20: Learn to protect important branches
 - Lab21: Learn to find vulnerabilities in your code (SAST)
 - Lab22: Learn to find secrets from git repositories
+
+---slide---
+
+## Recap
+
+- [Lab20: Branch protections](https://github.com/Rinorragi/ci-security/blob/release/examples/scripts/branchprotections.ps1)
+- [Lab21: SAST](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab21-static-application-security-testing.yml)
+- [Lab22: Secret scanning](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab22-secret-scanning.yml)
+
+---note---
+
+- Lab20: Show the github protections
+- Lab21: Semgrep finds jquery, dockerfile and rces. GHAS will find url redirect and deserialization. Also XSS in pr.
+- Lab22: E.g. vulnerable pipeline hardcoded secrets where not found. Trufflehog and gitleaks found azure storage key.
 
 ---page---
 
 ## Infrastructure
 
-- Find vulnerabilities in your Infrastructure-as-Code
+![Builder potato](images/builder_potato.jpeg) <!-- .element: width="400" -->
+
+---slide---
+
+### Find vulnerabilities in your Infrastructure-as-Code
+
 - Lab30: Scan GitHub Actions pipeline and terraform iac for vulnerabilities
+
+---note---
+
+Recap: 2:00
+
+---slide---
+
+## Recap
+
+- [Lab30: IaC scanning](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab30-infrastructure-as-code-scanning.yml)
+
+---note---
+
+Recap: 2:00
+
+- Lab30: Show both output and security tab
 
 ---page---
 
 ## Testing live target
 
-- These labs focus on running test against live target
+![Conjuring potato](images/conjuring_potato.jpeg) <!-- .element: width="400" -->
+
+---slide---
+
+### These labs focus on running test against live target
+
 - Lab40: Check security headers of an web application
 - Lab41: Check TLS cipher suites of a web application
 - Lab42: Run application in docker container and run tests against it (DAST)
+
+---slide---
+
+## Recap
+
+- [Lab40: Header scanning](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab40-http-header-scanning.yml)
+- [Lab41: TLS scanning](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab41-tls-scanning.yml)
+- [Lab42: DAST](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab42-dast.yml)
+
+---note---
+
+- Lab40: Needs public target. Show output.
+- Lab41: Show the results. Also remind that it matters from which machine and how this is done. (nmap results wary)
+- Lab42: Show nuclei, zap and ffuf results. Should find postinfo.html from ffuf.
 
 ---page---
 
 ## Next steps
 
-- These labs are miscellanous advanced topics:
+![Professor potato](images/professor_potato.jpeg) <!-- .element: width="400" -->
+
+---slide---
+
+These labs are miscellanous advanced topics:
+
 - Lab50: Learn how to generate your own static analysis results interchange format files
 - Lab51: Learn how to use githooks to prevent bad pushes
 - Lab52: Study defect dojo for application vulnerability management
 - Lab53: Lean how to run GitHub Actions in your own machine
+
+---note---
+
+Recap 2:45
+
+---slide---
+
+## Recap
+
+- [Lab50: SARIF](https://github.com/Rinorragi/ci-security/blob/release/examples/.github/workflows/lab50-sarif.yml)
+
+---note---
+
+Recap: 2:45
+
+- Lab50: Show how it integrates with github
+- Lab51: Show an example how in given branch commit is blocked with commit msg being wrong
+- Lab52: Show something
+- Lab53: Show how act works in your machine
+
+---page---
+
+## Final words
+
+![Key points potato](images/teaching_potato.png) <!-- .element: width="400" -->
+
+- Use regulatory compliance as selling point
+- The faster the better
+
+---note---
+
+Start small
+
+---slide---
+
+## Good luck
+
+![Creepy potato](images/creepy_potato.png) <!-- .element: width="400" -->
